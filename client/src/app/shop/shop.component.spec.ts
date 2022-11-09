@@ -21,3 +21,5 @@ describe('ShopComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
