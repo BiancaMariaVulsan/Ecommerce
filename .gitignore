@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+venv/Lib
+
+.idea
+*.iws
+*.iml
+*.ipr
