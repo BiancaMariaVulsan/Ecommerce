@@ -4,11 +4,14 @@ from category.models import Category
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(max_length=500, blank=True)
-    price = models.IntegerField()
-    images = models.ImageField(upload_to='photos/products')
+    price = models.FloatField()
+    # images = models.ImageField(upload_to='photos/products')
+    imageFirstURL = models.CharField(max_length=200)
+    imageSecondURL = models.CharField(max_length=200)
+    isOnSale = models.BooleanField(default=False)
     stock = models.IntegerField(default=0)
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -16,4 +19,4 @@ class Product(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.product_name
+        return self.name

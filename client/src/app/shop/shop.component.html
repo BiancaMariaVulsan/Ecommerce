@@ -47,136 +47,28 @@
           </div>
   
           <div class="row">
-              <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
-            <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg" alt="product-img" /></a>
-        </div>
-  
-        <span class="onsale">Sale</span>
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
+            <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let product of products">
+              <div class="product">
+                <div class="product-wrap">
+                  <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
+                  <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
+                </div>
+
+                <span class="onsale" *ngIf="product.isOnSale">Sale</span>
+                <div class="product-hover-overlay">
+                  <a href="#"><i class="tf-ion-android-cart"></i></a>
+                  <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                </div>
+
+                <div class="product-info">
+                  <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{ product.name }}</a></h2>
+                  <span class="price">
+                    ${{ product.price }}
+                  </span>
+                </div>
               </div>
-  
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Floral Kirby</a></h2>
-          <span class="price">
-            $329.10
-          </span>
-        </div>
-      </div>
-        </div>
-  
-        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
-          <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/111.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg" alt="product-img" /></a>
-        </div>
-  
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-              
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Open knit switer</a></h2>
-          <span class="price">
-            $29.10
-          </span>
-        </div>
-      </div>
-        </div>
-  
-        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
-          <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/222.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/322.jpg" alt="product-img" /></a>
-        </div>
-  
-        <span class="onsale">Sale</span>
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-  
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Official trendy</a></h2>
-          <span class="price">
-            $350.00 – $355.00
-          </span>
-        </div>
-      </div>
-        </div>
-  
-        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
-      <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/111.jpg" alt="product-img" /></a>
-        </div>
-  
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-  
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Frock short</a></h2>
-          <span class="price">
-            $249
-          </span>
-        </div>
-      </div>
-        </div>
-  
-        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
-          <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/444.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
-        </div>
-  
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-  
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Sleeve dress</a></h2>
-          <span class="price">
-            $59.10
-          </span>
-        </div>
-      </div>
-        </div>
-  
-        <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" >
-          <div class="product">
-        <div class="product-wrap">
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
-          <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
-        </div>
-  
-        <div class="product-hover-overlay">
-          <a href="#"><i class="tf-ion-android-cart"></i></a>
-          <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-  
-        <div class="product-info">
-          <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Stylish dress</a></h2>
-          <span class="price">
-            $99.00
-          </span>
-        </div>
-      </div>
-        </div>
-  
-      
-     
+            </div> 
+
   
             <div class="col-12">
               <nav aria-label="Page navigation">
@@ -303,40 +195,3 @@
       </div>
     </div>
   </section>
-22. Now guys please add the below code inside angularshop/src/app/signup/signup.component.html to make signup page ecommerce site:
-<div class="account section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="login-form border p-5">
-            <div class="text-center heading">
-              <h2 class="mb-2">Sign Up</h2>
-              <p class="lead">Already have an account? <a routerLink="/login"> Login now</a></p>
-            </div>
-  
-            <form action="#">
-              <div class="form-group mb-4">
-                <label for="#">Enter Email Address</label>
-                <input type="text" class="form-control" placeholder="Enter Email Address">
-              </div>
-              <div class="form-group mb-4">
-                <label for="#">Enter username</label>
-                <a class="float-right" href="">Forget password?</a>
-                <input type="text" class="form-control" placeholder="Enter Password"> 
-              </div>
-              <div class="form-group mb-4">
-                <label for="#">Enter Password</label>
-                <input type="text" class="form-control" placeholder="Enter Password"> 
-              </div>
-              <div class="form-group">
-                <label for="#">Confirm Password</label>
-                <input type="text" class="form-control" placeholder="Confirm Password"> 
-              </div>
-  
-              <a href="#" class="btn btn-main mt-3 btn-block">Signup</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
