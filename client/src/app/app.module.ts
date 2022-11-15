@@ -19,6 +19,8 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { AddressComponent } from './address/address.component';
 import { EditAddressComponent } from './edit-address/edit-address.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ProductService } from './services/products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
