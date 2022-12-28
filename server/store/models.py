@@ -19,6 +19,8 @@ class Product(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     color = models.CharField(max_length=50, default='red')
     size = models.CharField(max_length=50, default='L Large')
+    likes = models.IntegerField(default=0)
+    nrOfTimesOrdered = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

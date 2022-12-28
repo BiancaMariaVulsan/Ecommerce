@@ -14,6 +14,7 @@ import { ProductService } from '../services/products.service';
 export class ShopComponent implements OnInit {
   products: Product[]
   filteredProducts: Product[]
+  filteredByPopularity: Product[]
 
   private color = '';
   private size = '';
@@ -24,9 +25,8 @@ export class ShopComponent implements OnInit {
     this.productService.getProducts().subscribe(p => {
       this.products = p;
       this.filteredProducts = this.products;
+      this.filteredByPopularity = this.products.sort((a, b) => b.likes - a.likes);
     });
-    
-    // debugger;
   }
 
   onColorSelected(color: string, event) {
@@ -56,5 +56,10 @@ export class ShopComponent implements OnInit {
     const productFilter = new ProductFilter();
 
     this.filteredProducts = productFilter.filter(this.products, multiSpec);
+  }
+
+  updateProductLikes(product: Product) {
+    product.likes++;
+    this.productService.updateLikes(product);
   }
 }

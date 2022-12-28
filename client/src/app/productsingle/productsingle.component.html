@@ -4,13 +4,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <div class="content text-center">
-            <h1 class="mb-3">Product Single</h1>
-            <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
+            <h1 class="mb-3">Product Details</h1>
+            <p>"Don't be into trends. Don't make fashion own you, but you decide what you are, what you want to express by the way you dress and the way to live."  — Gianni Versace</p>
   
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent justify-content-center">
               <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Product Single</li>
+              <li class="breadcrumb-item active" aria-current="page">Product Details</li>
             </ol>
           </nav>
           </div>
@@ -54,18 +54,16 @@
         
         <div class="col-md-7">
           <div class="single-product-details mt-5 mt-lg-0">
-            <h2>Eclipse Crossbody</h2>
+            <h2>{{ product.name }}</h2>
             <div class="sku_wrapper mb-4">
-              SKU: <span class="text-muted">AB1563456789 </span>
+              ID: <span class="text-muted">{{ product.id }} </span>
             </div>
   
             <hr>
             
-            <h3 class="product-price">$300 <del>$119.90</del></h3>
+            <h3 class="product-price">${{ product.price }} <del>${{ product.price + 50}}</del></h3>
             
-            <p class="product-description my-4 ">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ipsum dicta quod, quia doloremque aut deserunt commodi quis. Totam a consequatur beatae nostrum, earum consequuntur? Eveniet consequatur ipsum dicta recusandae.
-            </p>
+            <p class="product-description my-4 ">Short Description</p>
   
             <form class="cart" action="#" method="post">
               <div class="quantity d-flex align-items-center">
@@ -107,7 +105,7 @@
                 <a href="#">Soap</a>
               </div>
   
-              <div class="product-share mt-5">
+              <!-- <div class="product-share mt-5">
                 <ul class="list-inline">
                   <li class="list-inline-item">
                     <a href="#"><i class="tf-ion-social-facebook"></i></a>
@@ -122,7 +120,7 @@
                     <a href="#"><i class="tf-ion-social-pinterest"></i></a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -134,25 +132,17 @@
           <nav class="product-info-tabs wc-tabs mt-5 mb-5">
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
-              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Additional Information</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Reviews(2)</a>
+              <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Additional Information</a> -->
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Reviews</a>
             </div>
           </nav>
   
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-  
-            <h4>Product Features</h4>
-  
-            <ul class="">
-              <li>Mapped with 3M™ Thinsulate™ Insulation [40G Body / Sleeves / Hood]</li>
-              <li>Embossed Taffeta Lining</li>
-              <li>DRYRIDE Durashell™ 2-Layer Oxford Fabric [10,000MM, 5,000G]</li>
-            </ul>
-  
+            <p>{{ product.description }}</p>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+            <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             
             <ul class="list-unstyled info-desc">
               <li class="d-flex">
@@ -176,7 +166,8 @@
                 <span>L, M, S, XL, XXL</span>
               </li>
             </ul>
-            </div>
+            </div> -->
+
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
             <div class="row">
               <div class="col-lg-7">
