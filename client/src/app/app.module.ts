@@ -23,6 +23,7 @@ import { ProductService } from './services/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductVariantService } from './services/productvariant.service';
 import { CategoryService } from './services/categories.service';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CategoryService } from './services/categories.service';
     ForgotPasswordComponent,
     ProfileDetailsComponent,
     AddressComponent,
-    EditAddressComponent
+    EditAddressComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
