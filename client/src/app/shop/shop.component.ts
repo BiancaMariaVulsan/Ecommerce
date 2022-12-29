@@ -4,7 +4,9 @@ import { ColorSpecification } from '../filtering/specifications/color.specificat
 import { MultiSpecification } from '../filtering/specifications/multi.specification';
 import { SizeSpecification } from '../filtering/specifications/size.specification';
 import { Product } from '../models/product.model';
+import { ProductVariant } from '../models/productvariant.model';
 import { ProductService } from '../services/products.service';
+import { ProductVariantService } from '../services/productvariant.service';
 
 @Component({
   selector: 'app-shop',
@@ -12,21 +14,23 @@ import { ProductService } from '../services/products.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  products: Product[]
-  filteredProducts: Product[]
+  products: Product[];
+  variants: ProductVariant[];
+  filteredProducts: Product[];
+  filteredByPopularity: Product[];
 
   private color = '';
   private size = '';
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private productVariantService: ProductVariantService) { }
 
   ngOnInit(): void {
+    this.productVariantService.getProductVariants().subscribe(v => this.variants = v);
     this.productService.getProducts().subscribe(p => {
       this.products = p;
       this.filteredProducts = this.products;
+      this.filteredByPopularity = this.products.sort((a, b) => b.likes - a.likes);
     });
-    
-    // debugger;
   }
 
   onColorSelected(color: string, event) {
@@ -54,7 +58,15 @@ export class ShopComponent implements OnInit {
     const sizeSpec = new SizeSpecification(this.size);
     const multiSpec = new MultiSpecification([colorSpec, sizeSpec]);
     const productFilter = new ProductFilter();
+    this.filteredProducts = Array.from(new Set(
+      productFilter
+        .filter(this.variants, multiSpec)
+        .map(v => this.productService.findProduct(v.parent_id))
+      ));
+  }
 
-    this.filteredProducts = productFilter.filter(this.products, multiSpec);
+  updateProductLikes(product: Product) {
+    product.likes++;
+    this.productService.updateLikes(product);
   }
 }

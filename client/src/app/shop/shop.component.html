@@ -50,14 +50,14 @@
             <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let product of filteredProducts">
               <div class="product">
                 <div class="product-wrap">
-                  <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
-                  <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
+                  <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
+                  <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
                 </div>
 
                 <span class="onsale" *ngIf="product.isOnSale">Sale</span>
                 <div class="product-hover-overlay">
                   <a href="#"><i class="tf-ion-android-cart"></i></a>
-                  <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                  <a (click)="updateProductLikes(product)"><i class="tf-ion-ios-heart"></i></a>
                 </div>
 
                 <div class="product-info">
@@ -164,32 +164,18 @@
     <button type="button" class="btn btn-black btn-small">Filter</button>
   </form>
   
-  <!-- popular product -->
+  <!-- popular products -->
   <section class="widget widget-popular mb-5">
     <h3 class="widget-title mb-4 h4">Popular Products</h3>
-    <a class="popular-products-item media" routerLink="/product-single">
-      <img src="assets/images/p-1.jpg" alt="" class="img-fluid mr-4">
-      <div class="media-body">
-        <h6>Contrast <br>Backpack</h6>
-        <span class="price">$45</span>
-      </div>
-    </a>
-  
-    <a class="popular-products-item media" routerLink="/product-single">
-      <img src="assets/images/p-2.jpg" alt="" class="img-fluid mr-4">
-      <div class="media-body">
-        <h6>Hoodie with <br>Logo</h6>
-        <span class="price">$45</span>
-      </div>
-    </a>
-  
-    <a class="popular-products-item media" routerLink="/product-single">
-      <img src="assets/images/p-3.jpg" alt="" class="img-fluid mr-4">
-      <div class="media-body">
-        <h6>Traveller<br>Backpack</h6>
-        <span class="price">$45</span>
-      </div>
-    </a>
+    <div  *ngFor="let product of filteredByPopularity| slice:0:4;">
+      <a class="popular-products-item media" routerLink="/product-single">
+        <img [src]=product.imageFirstURL alt="product-img" class="img-fluid mr-4">
+        <div class="media-body">
+          <h6><br>{{ product.name }}</h6>
+          <span class="price">${{ product.price }}</span>
+        </div>
+      </a>
+    </div>
   </section>
         </div>
       </div>
