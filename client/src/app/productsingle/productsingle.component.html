@@ -61,7 +61,8 @@
   
             <hr>
             
-            <h3 class="product-price">${{ product.price }} <del>${{ product.price + 50}}</del></h3>
+            <h3 class="product-price" *ngIf="product.isOnSale">${{ product.price }} <del>${{ product.price + 50}}</del></h3>
+            <h3 class="product-price" *ngIf="!product.isOnSale">${{ product.price }}</h3>
             
             <p class="product-description my-4 ">Short Description</p>
   
@@ -76,33 +77,26 @@
             <div class="color-swatches mt-4 d-flex align-items-center">
               <span class="font-weight-bold text-capitalize product-meta-title">color:</span>
               <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                  <a routerLink="/product-single" class="bg-info"></a>
-                </li>
-                <li class="list-inline-item">
-                  <a routerLink="/product-single" class="bg-dark"></a>
-                </li>
-                <li class="list-inline-item">
-                  <a routerLink="/product-single" class="bg-danger"></a>
+                <li class="list-inline-item mr-4" *ngFor="let color of colorsAvailable; let indexOfColor = index;">
+                  <div class="custom-control custom-checkbox color-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{'color' + indexOfColor}}">
+                    <label class="custom-control-label {{color}}" for="{{'color' + indexOfColor}}"></label>
+                  </div>
                 </li>
               </ul>
             </div>
   
             <div class="product-size d-flex align-items-center mt-4">
               <span class="font-weight-bold text-capitalize product-meta-title">Size:</span>
-              <select class="form-control">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
+                <select class="form-control">
+                  <option *ngFor="let size of sizesAvailable"> {{size}} </option>
+                </select>
             </div>
   
             <div class="products-meta mt-4">
               <div class="product-category d-flex align-items-center">
-                <span class="font-weight-bold text-capitalize product-meta-title">Categories :</span>
-                <a href="#">Products , </a>
-                <a href="#">Soap</a>
+                <span class="font-weight-bold text-capitalize product-meta-title">Category :</span>
+                <a href="#">{{category}}</a>
               </div>
   
               <!-- <div class="product-share mt-5">
@@ -242,95 +236,28 @@
           </div>
         </div>
       </div>
-      <div class="row">
-         <div class="col-lg-3 col-6" >
+        <ul class="row">
+          <li class="col-lg-4 col-sm-6 col-md-6" *ngFor="let product of mayLikeProducts | slice:0:3;">
                 <div class="product">
             <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
+              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
               <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg" alt="product-img" /></a>
             </div>
   
-            <span class="onsale">Sale</span>
+            <span class="onsale" *ngIf="product.isOnSale">Sale</span>
             <div class="product-hover-overlay">
               <a href="#"><i class="tf-ion-android-cart"></i></a>
               <a href="#"><i class="tf-ion-ios-heart"></i></a>
                   </div>
   
             <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Kirby Shirt</a></h2>
+              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{ product.name }}</a></h2>
               <span class="price">
-                $329.10
+                ${{product.price}}
               </span>
             </div>
           </div>
-           </div>
-  
-        <div class="col-lg-3 col-6" >
-                <div class="product">
-            <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/111.jpg" alt="product-img" /></a>
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
-            </div>
-  
-            <span class="onsale">Sale</span>
-            <div class="product-hover-overlay">
-              <a href="#"><i class="tf-ion-android-cart"></i></a>
-              <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                  </div>
-  
-            <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Kirby Shirt</a></h2>
-              <span class="price">
-                $329.10
-              </span>
-            </div>
-          </div>
-           </div>
-  
-  
-        <div class="col-lg-3 col-6" >
-                <div class="product">
-            <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/111.jpg" alt="product-img" /></a>
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/322.jpg" alt="product-img" /></a>
-            </div>
-  
-            <span class="onsale">Sale</span>
-            <div class="product-hover-overlay">
-              <a href="#"><i class="tf-ion-android-cart"></i></a>
-              <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                  </div>
-  
-            <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Kirby Shirt</a></h2>
-              <span class="price">
-                $329.10
-              </span>
-            </div>
-          </div>
-           </div>
-  
-        <div class="col-lg-3 col-6">
-                <div class="product">
-            <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/444.jpg" alt="product-img" /></a>
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
-            </div>
-  
-            <span class="onsale">Sale</span>
-            <div class="product-hover-overlay">
-              <a href="#"><i class="tf-ion-android-cart"></i></a>
-              <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                  </div>
-  
-            <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Kirby Shirt</a></h2>
-              <span class="price">
-                $329.10
-              </span>
-            </div>
-          </div>
-           </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>

@@ -7,10 +7,9 @@ export class ProductService {
     private readonly APIUrl = 'http://127.0.0.1:8000/';
     private products: Product[]
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {this.http.get<Product[]>(this.APIUrl + 'store/products').subscribe(p => this.products = p);}
 
     getProducts() {
-        this.http.get<Product[]>(this.APIUrl + 'store/products').subscribe(p => this.products = p);
         return this.http.get<Product[]>(this.APIUrl + 'store/products');
     }
 

@@ -21,6 +21,8 @@ import { EditAddressComponent } from './edit-address/edit-address.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ProductService } from './services/products.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductVariantService } from './services/productvariant.service';
+import { CategoryService } from './services/categories.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     SlickCarouselModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, ProductVariantService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

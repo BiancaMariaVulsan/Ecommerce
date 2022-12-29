@@ -1,13 +1,13 @@
-import ast
-
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-
-from .models import Product
-from .serializers import ProductSerializer
-from rest_framework import viewsets, status
+from .models import Product, ProductVariant
+from .serializers import ProductSerializer, ProductVariantSerializer
+from rest_framework import viewsets
 
 
 class ProductView(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+
+
+class ProductVariantView(viewsets.ModelViewSet):
+    serializer_class = ProductVariantSerializer
+    queryset = ProductVariant.objects.all()
