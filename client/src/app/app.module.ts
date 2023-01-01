@@ -24,6 +24,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductVariantService } from './services/productvariant.service';
 import { CategoryService } from './services/categories.service';
 import { PaymentComponent } from './payment/payment.component';
+import { AccountService } from './services/account.service';
+import { JwtModule } from "@auth0/angular-jwt";
+import { FormsModule } from '@angular/forms';
+
+export function tokenGetter() {
+  return localStorage.getItem("eshop-jwt");
+}
 
 @NgModule({
   declarations: [
@@ -49,9 +56,17 @@ import { PaymentComponent } from './payment/payment.component';
     BrowserModule,
     AppRoutingModule,
     SlickCarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://127.0.0.1:8000"],
+        disallowedRoutes: []
+      }
+    }),
   ],
-  providers: [ProductService, ProductVariantService, CategoryService],
+  providers: [ProductService, ProductVariantService, CategoryService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
