@@ -21,15 +21,15 @@ export class LoginComponent implements OnInit {
   onLoginClicked(): void {
     this.accountService.loginUser(this.loginUser).subscribe(res => {
       localStorage.setItem("eshop-username", res.email);
-      localStorage.setItem("eshop-userid", res.id.toString());
+      localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);
-      localStorage.setItem("eshop-usertypeid", res.role.id);
+      // localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
 
       if (res.role.name == "Admin") {
         this.router.navigate(["dashboard"]);
       } else {
-        this.router.navigate(["home"]);
+        this.router.navigate([""]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');

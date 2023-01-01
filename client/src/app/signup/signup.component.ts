@@ -18,13 +18,13 @@ export class SignupComponent implements OnInit {
     this.signUpUser = new SignupUserRequest();
     this.signUpUser.email = "";
     this.signUpUser.password = "";
-    this.signUpUser.role = 0;
+    // this.signUpUser.role = 0;
   }
 
   onSignupClicked(): void {
-    this.accountService.loginUser(this.signUpUser).subscribe(res => {
+    this.accountService.signupUser(this.signUpUser).subscribe(res => {
       localStorage.setItem("eshop-username", res.email);
-      localStorage.setItem("eshop-userid", res.id.toString());
+      localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       if (res.role.name == "Admin") {
         this.router.navigate(["dashboard"]);
       } else {
-        this.router.navigate(["home"]);
+        this.router.navigate([""]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');

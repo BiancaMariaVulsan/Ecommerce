@@ -14,6 +14,10 @@ export class AccountService {
     }
 
     loginUser(loginUserInformation: LoginUserRequest): Observable<LoginUserReply> {
-        return this.http.post<LoginUserReply>(this.APIUrl + '/login', loginUserInformation);
+        return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/login/', loginUserInformation);
+    }
+
+    signupUser(loginUserInformation: LoginUserRequest): Observable<LoginUserReply> {
+        return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/signup/', loginUserInformation);
     }
 }
