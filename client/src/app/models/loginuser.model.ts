@@ -10,20 +10,16 @@ export class SignupUserRequest {
 
     public email: string;
     public password: string;
-    public role: string;
+    public roleId: string;
 }
 
 export class LoginUserReply {
     public id: string;
     public email: string;
     public token: string;
-    public role: UserRole;
+    public role: UserRole = new UserRole();
 
-    constructor() {
-        this.role = new UserRole()
-        this.role.id = "32a8f7db-9e02-4ea1-8c70-305f5a9f6252"
-        this.role.name = "Customer"
-    }
+    constructor() { }
 }
 
 export class UserRole {

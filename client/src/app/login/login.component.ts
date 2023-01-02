@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginUserRequest } from '../models/loginuser.model';
+import { LoginUserRequest, UserRole } from '../models/loginuser.model';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("eshop-username", res.email);
       localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);
-      // localStorage.setItem("eshop-usertypeid", res.role.id);
+      localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
-
+      debugger;
       if (res.role.name == "Admin") {
         this.router.navigate(["dashboard"]);
-      } else {
-        this.router.navigate([""]);
+      } else if (res.role.name == "Customer") {
+        this.router.navigate(["shop"]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');

@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     this.signUpUser = new SignupUserRequest();
     this.signUpUser.email = "";
     this.signUpUser.password = "";
-    // this.signUpUser.role = 0;
+    this.signUpUser.roleId = "";
   }
 
   onSignupClicked(): void {
@@ -31,8 +31,8 @@ export class SignupComponent implements OnInit {
 
       if (res.role.name == "Admin") {
         this.router.navigate(["dashboard"]);
-      } else {
-        this.router.navigate([""]);
+      } else if (res.role.name == "Customer") {
+        this.router.navigate(["shop"]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');
