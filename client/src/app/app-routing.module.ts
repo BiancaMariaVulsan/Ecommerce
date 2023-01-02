@@ -9,10 +9,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { OrdersComponent } from './orders/orders.component';
+import { PaymentComponent } from './payment/payment.component';
 import { ProductsingleComponent } from './productsingle/productsingle.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ShopComponent } from './shop/shop.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,7 +22,7 @@ const routes: Routes = [
   {path: 'shop', component: ShopComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: 'Admin' }},
   {path: 'order', component: OrdersComponent},
   {path: 'address', component: AddressComponent},
   {path: 'edit-address', component: EditAddressComponent}, 
@@ -28,6 +30,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

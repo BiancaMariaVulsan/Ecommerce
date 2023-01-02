@@ -10,16 +10,16 @@
   
             <form action="#">
               <div class="form-group mb-4">
-                <label for="#">Enter username</label>
-                <input type="text" class="form-control" placeholder="Enter Username">
+                <label for="#">Enter Email</label>
+                <input [(ngModel)]="loginUser.email" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Email" required>
               </div>
               <div class="form-group">
                 <label for="#">Enter Password</label>
                 <a class="float-right" href="">Forget password?</a>
-                <input type="text" class="form-control" placeholder="Enter Password"> 
+                <input [(ngModel)]="loginUser.password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="Enter Password" required> 
               </div>
   
-              <a href="#" class="btn btn-main mt-3 btn-block">Login</a>
+              <button (click)="onLoginClicked()" class="btn btn-main mt-3 btn-block">Login</button>
             </form>
           </div>
         </div>
