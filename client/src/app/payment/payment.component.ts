@@ -28,7 +28,10 @@ export class PaymentComponent implements OnInit {
     });
 
     const paymentStripe = (stripeTocken: any) => {
-      this.checkoutService.makePayment(stripeTocken).subscribe((data:any) => {
+      // this.checkoutService.createStripeCustomer(stripeTocken, localStorage.getItem("eshop-username"), 'name').subscribe((data:any) => {
+      //   console.log(data)
+      // })
+      this.checkoutService.makePayment(localStorage.getItem("eshop-username"), amount).subscribe((data:any) => {
         console.log(data)
       })
     }

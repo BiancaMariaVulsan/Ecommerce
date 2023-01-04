@@ -8,20 +8,20 @@ export class CartService {
 
     constructor(private http: HttpClient) {}
 
-    incrementItemQuantity(item: IBasketItem) {
-        throw new Error('Method not implemented.');
+    changeItemQuantity(item: IBasketItem) {
+      return this.http.put<any>(this.APIUrl + 'checkout/change/', item);
     }
 
     removeItemFromCart(item: IBasketItem) {
-        throw new Error('Method not implemented.');
+      return this.http.post<any>(this.APIUrl + 'checkout/remove/', item);
     }
 
     addItemToCart(item: IBasketItem) {
-        throw new Error('Method not implemented.');
+      return this.http.post<any>(this.APIUrl + 'checkout/add/', item);
     }
 
-    getCurrentCartValue() {
-      throw new Error('Method not implemented.');
+    getCurrentCart() {
+      return this.http.get(this.APIUrl + 'checkout/cart/');
     }
     
     deleteCart(basket: any) {
