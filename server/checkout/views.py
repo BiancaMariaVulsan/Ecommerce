@@ -55,3 +55,4 @@ def register_customer(request):
     Customer.create_customer(responsedict['customerId'], responsedict['name'], responsedict['email'])
     print(responsedict)
     return Response("Success")
+
