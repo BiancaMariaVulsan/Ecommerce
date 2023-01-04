@@ -19,10 +19,10 @@ export class CartComponent implements OnInit {
   }
 
   incrementItemQuantity(item: IBasketItem): void {
-    this.cartService.incrementItemQuantity(item);
+    this.cartService.changeItemQuantity(item);
   }
 
   decrementItemQuantity(item: IBasketItem): void {
-    this.cartService.incrementItemQuantity(item);
+    this.cartService.changeItemQuantity(item);
   }
 }
