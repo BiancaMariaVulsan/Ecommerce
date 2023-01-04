@@ -27,11 +27,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("eshop-usertype", res.role.name);
       
       if (res.role.name == "Admin") {
-<<<<<<< HEAD
         this.router.navigate(["dashboard"]);
-=======
-        this.router.navigate(["admin"]);
->>>>>>> master
       } else if (res.role.name == "Customer") {
         this.router.navigate(["shop"]);
       }
