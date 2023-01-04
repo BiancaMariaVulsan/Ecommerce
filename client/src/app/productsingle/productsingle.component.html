@@ -240,8 +240,8 @@
           <li class="col-lg-4 col-sm-6 col-md-6" *ngFor="let product of mayLikeProducts | slice:0:3;">
                 <div class="product">
             <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg" alt="product-img" /></a>
+              <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
+              <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
             </div>
   
             <span class="onsale" *ngIf="product.isOnSale">Sale</span>
