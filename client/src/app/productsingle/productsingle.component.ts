@@ -34,6 +34,15 @@ export class ProductsingleComponent implements OnInit {
     });
   }
 
+  selectedIndex: number = 0;
+
+  changeSelection(event, index) {
+    this.selectedIndex = event.target.checked ? index : undefined;
+
+    console.log(this.colorsAvailable[index]);
+    // do your logic here...
+  }
+
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }

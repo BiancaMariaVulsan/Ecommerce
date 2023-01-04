@@ -1,32 +1,11 @@
-<section class="page-header">
-    <div class="overly"></div>   
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="content text-center">
-            <h1 class="mb-3">Shop</h1>
-            <p>If you can't stop thinking about it... buy it!</p>
-  
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shop</li>
-            </ol>
-          </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="products-shop section">
+<section class="products-shop section">
     <div class="container">
       <div class="row">
         <div class="col-md-9">
           <div class="row align-items-center">
             <div class="col-lg-12 mb-4 mb-lg-0">
               <div class="section-title">
-                  <h2 class="d-block text-left-sm">Shop</h2>
+                  <h2 class="d-block text-left-sm">Products in stock</h2>
   
                   <div class="heading d-flex justify-content-between mb-5">
                     <p class="result-count mb-0"> Showing 1–6 of {{filteredProducts.length}} results </p>
@@ -52,18 +31,14 @@
             { itemsPerPage: 6, currentPage: p }">
               <div class="product">
                 <div class="product-wrap">
-                  <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
-                  <a routerLink="/product-single/{{product.id}}"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
+                  <a routerLink="/admin-product/{{product.id}}"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
+                  <a routerLink="/admin-product/{{product.id}}"><img class="img-fluid w-100 mb-3 img-second" [src]=product.imageSecondURL alt="product-img" /></a>
                 </div>
 
                 <span class="onsale" *ngIf="product.isOnSale">Sale</span>
-                <div class="product-hover-overlay">
-                  <a href="#"><i class="tf-ion-android-cart"></i></a>
-                  <a (click)="updateProductLikes(product)"><i class="tf-ion-ios-heart"></i></a>
-                </div>
 
                 <div class="product-info">
-                  <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{ product.name }}</a></h2>
+                  <h2 class="product-title h5 mb-0"><a routerLink="/admin-product">{{ product.name }}</a></h2>
                   <span class="price">
                     ${{ product.price }}
                   </span>
@@ -84,7 +59,7 @@
     
     <!-- color -->
     <section class="widget widget-colors mb-5">
-      <h3 class="widget-title h4 mb-4">Shop by color</h3>
+      <h3 class="widget-title h4 mb-4">Filter by color</h3>
       <ul class="list-inline">
         <li class="list-inline-item mr-4">
           <div class="custom-control custom-checkbox color-checkbox">
@@ -121,7 +96,7 @@
   
     <!-- size -->
     <section class="widget widget-sizes mb-5">
-      <h3 class="widget-title h4 mb-4">Shop by Sizes</h3>
+      <h3 class="widget-title h4 mb-4">Filter by Sizes</h3>
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="size1" (change)="onSizeSelected('L Large', $event)">
         <label class="custom-control-label" for="size1">L Large</label>
@@ -145,20 +120,6 @@
     </section>
   
   </form>
-  
-  <!-- popular products -->
-  <section class="widget widget-popular mb-5">
-    <h3 class="widget-title mb-4 h4">Popular Products</h3>
-    <div  *ngFor="let product of filteredByPopularity| slice:0:4;">
-      <a class="popular-products-item media" routerLink="/product-single/{{product.id}}">
-        <img [src]=product.imageFirstURL alt="product-img" class="img-fluid mr-4">
-        <div class="media-body">
-          <h6><br>{{ product.name }}</h6>
-          <span class="price">${{ product.price }}</span>
-        </div>
-      </a>
-    </div>
-  </section>
         </div>
       </div>
     </div>

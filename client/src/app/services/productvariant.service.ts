@@ -21,4 +21,14 @@ export class ProductVariantService {
     getColors(productId: number): string[] {
         return Array.from(new Set(this.variants.filter(v => v.parent_id == productId).map(v => v.color)));
     }
+
+    updateVariant(newVariant: ProductVariant) {
+        return this.http.put(this.APIUrl + 'store/variants/' + newVariant.id + '/', newVariant)
+        .subscribe();
+    }
+
+    addVariant(newVariant: ProductVariant) {
+        return this.http.post(this.APIUrl + 'store/variants/', newVariant)
+        .subscribe();
+    }
 }

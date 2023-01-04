@@ -5,14 +5,6 @@
         <div class="col-lg-6">
           <div class="content text-center">
             <h1 class="mb-3">Product Details</h1>
-            <p>"Don't be into trends. Don't make fashion own you, but you decide what you are, what you want to express by the way you dress and the way to live."  — Gianni Versace</p>
-  
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Product Details</li>
-            </ol>
-          </nav>
           </div>
         </div>
       </div>
@@ -32,9 +24,6 @@
                 <div class="carousel-item">
                   <img [src]=product.imageSecondURL alt="" class="img-fluid">
                 </div>
-                <div class="carousel-item">
-                  <img src="assets/images/clothingsize.webp" alt="" class="img-fluid">
-                </div>
               </div>
   
               <ol class="carousel-indicators">
@@ -43,9 +32,6 @@
                   </li>
                   <li data-target="#single-product-slider" data-slide-to="1">
                     <img [src]=product.imageSecondURL alt="" class="img-fluid">
-                  </li>
-                  <li data-target="#single-product-slider" data-slide-to="2">
-                      <img src="assets/images/clothingsize.webp" alt="" class="img-fluid">
                   </li>
               </ol>
             </div>
@@ -64,12 +50,12 @@
             <h3 class="product-price" *ngIf="product.isOnSale">${{ product.price }} <del>${{ product.price + 50}}</del></h3>
             <h3 class="product-price" *ngIf="!product.isOnSale">${{ product.price }}</h3>
             
-            <p class="product-description my-4 ">Short Description</p>
+            <p class="product-description my-4 ">Stock: {{stock}}</p>
   
             <form class="cart" action="#" method="post">
               <div class="quantity d-flex align-items-center">
-                <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="9" name="quantity" value="1" title="Qty" size="4" >
-                <a href="#" class="btn btn-main btn-small">Add to cart</a>
+                <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="0" max="9" [ngModel]="variabila" name="quantity" title="Qty" size="4" (change)="changeStock($event)">
+                <a (click)="updateProductFields()" class="btn btn-main btn-small">Add to Stock</a>
               </div>
             </form>
   
@@ -85,10 +71,16 @@
                 </li>
               </ul>
             </div>
+
+            <p></p>
+            <div class="custom-control custom-checkbox color-checkbox">
+                <strong>Is on sale?</strong>
+                <input type="checkbox" [(ngModel)]="product.isOnSale" (change)="changeIsOnSale($event)">
+            </div>
   
             <div class="product-size d-flex align-items-center mt-4">
               <span class="font-weight-bold text-capitalize product-meta-title">Size:</span>
-                <select class="form-control">
+                <select class="form-control" (change)="changeSize($event)">
                   <option *ngFor="let size of sizesAvailable"> {{size}} </option>
                 </select>
             </div>
@@ -195,28 +187,6 @@
                   </div>  
                 </div>
               </div>
-  
-  
-              <div class="col-lg-5">
-                <div class="review-comment mt-5 mt-lg-0">
-                  <h4 class="mb-3">Add a Review</h4>
-  
-                  <form action="#">
-                    <div class="starrr"></div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                      <input type="email" class="form-control" placeholder="Your Email">
-                    </div>
-                    <div class="form-group">
-                      <textarea name="comment" id="comment" class="form-control" cols="30" rows="4" placeholder="Your Review"></textarea>
-                    </div>
-  
-                    <a routerLink="/product-single" class="btn btn-main btn-small">Submit Review</a>
-                  </form>
-                </div>
-              </div>
             </div>
             </div>
           </div>
@@ -226,38 +196,4 @@
   </section>
   
   
-  <section class="products related-products section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="title text-center">
-            <h2>You may like this</h2>
-            <p>The best Online sales to shop these weekend</p>
-          </div>
-        </div>
-      </div>
-        <ul class="row">
-          <li class="col-lg-4 col-sm-6 col-md-6" *ngFor="let product of mayLikeProducts | slice:0:3;">
-                <div class="product">
-            <div class="product-wrap">
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]=product.imageFirstURL alt="product-img" /></a>
-              <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg" alt="product-img" /></a>
-            </div>
   
-            <span class="onsale" *ngIf="product.isOnSale">Sale</span>
-            <div class="product-hover-overlay">
-              <a href="#"><i class="tf-ion-android-cart"></i></a>
-              <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                  </div>
-  
-            <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{ product.name }}</a></h2>
-              <span class="price">
-                ${{product.price}}
-              </span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>

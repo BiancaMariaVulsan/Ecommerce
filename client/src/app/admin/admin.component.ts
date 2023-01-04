@@ -9,11 +9,11 @@ import { ProductService } from '../services/products.service';
 import { ProductVariantService } from '../services/productvariant.service';
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class ShopComponent implements OnInit {
+export class AdminComponent implements OnInit {
   products: Product[];
   p = 0; //for pagination - this is one page
   variants: ProductVariant[];
