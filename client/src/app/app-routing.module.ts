@@ -1,3 +1,5 @@
+import { NewproductComponent } from './newproduct/newproduct.component';
+import { AdminproductComponent } from './adminproduct/adminproduct.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './address/address.component';
@@ -15,10 +17,14 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ShopComponent } from './shop/shop.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentStripeComponent } from './payment-stripe/payment-stripe.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'product-single/:id', component: ProductsingleComponent},
+  {path: 'admin-product/:id', component: AdminproductComponent},
+  {path: 'new-product', component: NewproductComponent},
   {path: 'shop', component: ShopComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart', component: CartComponent},
@@ -31,6 +37,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

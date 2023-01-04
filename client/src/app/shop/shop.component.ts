@@ -15,6 +15,7 @@ import { ProductVariantService } from '../services/productvariant.service';
 })
 export class ShopComponent implements OnInit {
   products: Product[];
+  p = 0; //for pagination - this is one page
   variants: ProductVariant[];
   filteredProducts: Product[];
   filteredByPopularity: Product[];
@@ -30,6 +31,7 @@ export class ShopComponent implements OnInit {
       this.products = p;
       this.filteredProducts = this.products;
       this.filteredByPopularity = this.products.sort((a, b) => b.likes - a.likes);
+      console.log(this.products)
     });
   }
 
@@ -43,6 +45,58 @@ export class ShopComponent implements OnInit {
     }
   }
 
+  sort(event) {
+    this.p=0;
+    switch (event.target.value) {
+      case "rating":
+        {
+          this.filteredProducts = this.filteredProducts.sort((low, high) => low.likes - high.likes);
+          break;
+        }
+
+      case "popularity":
+        {
+          this.filteredProducts = this.filteredProducts.sort((low, high) => low.nrOfTimesOrdered - high.nrOfTimesOrdered);
+          break;
+        }
+
+      case "low":
+        {
+          this.filteredProducts = this.filteredProducts.sort((low, high) => low.price - high.price);
+          break;
+        }
+
+      case "high":
+        {
+          this.filteredProducts = this.filteredProducts.sort((low, high) => high.price - low.price);
+          break;
+        }
+
+      case "name":
+        {
+          this.filteredProducts = this.filteredProducts.sort(function (low, high) {
+            if (low.name < high.name) {
+              return -1;
+            }
+            else if (low.name > high.name) {
+              return 1;
+            }
+            else {
+              return 0;
+            }
+          })
+          break;
+        }
+
+      default: {
+        this.filteredProducts = this.filteredProducts.sort((low, high) => low.price - high.price);
+        break;
+      }
+
+    }
+    return this.filteredProducts;
+  }
+
   onSizeSelected(size: string, event) {
     if (event.target.checked) {
       this.size = size;
@@ -54,6 +108,7 @@ export class ShopComponent implements OnInit {
   }
 
   filter() {
+    this.p = 0;
     const colorSpec = new ColorSpecification(this.color);
     const sizeSpec = new SizeSpecification(this.size);
     const multiSpec = new MultiSpecification([colorSpec, sizeSpec]);

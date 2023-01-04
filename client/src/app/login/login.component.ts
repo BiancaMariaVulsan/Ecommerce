@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("eshop-jwt", res.token);
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
-      debugger;
+      
       if (res.role.name == "Admin") {
-        this.router.navigate(["dashboard"]);
+        this.router.navigate(["admin"]);
       } else if (res.role.name == "Customer") {
         this.router.navigate(["shop"]);
       }

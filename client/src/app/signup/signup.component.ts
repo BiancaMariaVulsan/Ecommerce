@@ -11,6 +11,7 @@ import { AccountService } from '../services/account.service';
 export class SignupComponent implements OnInit {
   signUpUser: SignupUserRequest;
   roles: UserRole[];
+  confirmationPassword: string = "";
 
   constructor(private accountService: AccountService, private router: Router) { }
 
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClicked(): void {
-    this.accountService.signupUser(this.signUpUser).subscribe(res => {
+    this.accountService.signupUser(this.signUpUser, this.confirmationPassword).subscribe(res => {
       localStorage.setItem("eshop-username", res.email);
       localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);

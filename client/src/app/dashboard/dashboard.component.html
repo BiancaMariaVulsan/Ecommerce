@@ -27,7 +27,7 @@
           <div class="nav flex-column nav-pills">
             <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
           </div>
-          <div class="nav flex-column nav-pills">
+          <!-- <div class="nav flex-column nav-pills">
             <a class="nav-link" routerLink="/dashboard" >Orders</a>
           </div>
           <div class="nav flex-column nav-pills">
@@ -35,12 +35,12 @@
           </div>
           <div class="nav flex-column nav-pills">
             <a class="nav-link" routerLink="/dashboard" >Address</a>
+          </div> -->
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/profile-details" >Account</a>
           </div>
           <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/dashboard" >Account</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/">Log Out</a>
+            <a (click)="logout()" class="nav-link" routerLink="/">Log Out</a>
           </div>
         </div>
   

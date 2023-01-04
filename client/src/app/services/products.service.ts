@@ -18,6 +18,11 @@ export class ProductService {
         .subscribe();
     }
 
+    updateProduct(newProduct: Product) {
+        return this.http.put(this.APIUrl + 'store/products/' + newProduct.id + '/', newProduct)
+        .subscribe();
+    }
+
     findProduct(id: number): Product {
         // Suppose a product with this id exists
         return this.products.filter(p => p.id == id).at(0)
