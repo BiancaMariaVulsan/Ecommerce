@@ -1,0 +1,199 @@
+<section class="page-header">
+    <div class="overly"></div>   
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="content text-center">
+            <h1 class="mb-3">Product Details</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="single-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="single-product-slider">
+            <div class="carousel slide" data-ride="carousel" id="single-product-slider">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img [src]=product.imageFirstURL alt="" class="img-fluid">
+                </div>
+                <div class="carousel-item">
+                  <img [src]=product.imageSecondURL alt="" class="img-fluid">
+                </div>
+              </div>
+  
+              <ol class="carousel-indicators">
+                  <li data-target="#single-product-slider" data-slide-to="0" class="active">
+                    <img [src]=product.imageFirstURL alt="" class="img-fluid">
+                  </li>
+                  <li data-target="#single-product-slider" data-slide-to="1">
+                    <img [src]=product.imageSecondURL alt="" class="img-fluid">
+                  </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-7">
+          <div class="single-product-details mt-5 mt-lg-0">
+            <h2>{{ product.name }}</h2>
+            <div class="sku_wrapper mb-4">
+              ID: <span class="text-muted">{{ product.id }} </span>
+            </div>
+  
+            <hr>
+            
+            <h3 class="product-price" *ngIf="product.isOnSale">${{ product.price }} <del>${{ product.price + 50}}</del></h3>
+            <h3 class="product-price" *ngIf="!product.isOnSale">${{ product.price }}</h3>
+            
+            <p class="product-description my-4 ">Stock: {{stock}}</p>
+  
+            <form class="cart" action="#" method="post">
+              <div class="quantity d-flex align-items-center">
+                <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="0" max="9" [ngModel]="variabila" name="quantity" title="Qty" size="4" (change)="changeStock($event)">
+                <a (click)="updateProductFields()" class="btn btn-main btn-small">Add to Stock</a>
+              </div>
+            </form>
+  
+            
+            <div class="color-swatches mt-4 d-flex align-items-center">
+              <span class="font-weight-bold text-capitalize product-meta-title">color:</span>
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item mr-4" *ngFor="let color of colorsAvailable; let indexOfColor = index;">
+                  <div class="custom-control custom-checkbox color-checkbox">
+                    <input type="checkbox" class="custom-control-input" [ngModel]="selectedIndex === indexOfColor" id="{{'color' + indexOfColor}}" (change)="changeSelection($event, indexOfColor)">
+                    <label class="custom-control-label {{color}}" for="{{'color' + indexOfColor}}"></label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <p></p>
+            <div class="custom-control custom-checkbox color-checkbox">
+                <strong>Is on sale?</strong>
+                <input type="checkbox" [(ngModel)]="product.isOnSale" (change)="changeIsOnSale($event)">
+            </div>
+  
+            <div class="product-size d-flex align-items-center mt-4">
+              <span class="font-weight-bold text-capitalize product-meta-title">Size:</span>
+                <select class="form-control" (change)="changeSize($event)">
+                  <option *ngFor="let size of sizesAvailable"> {{size}} </option>
+                </select>
+            </div>
+  
+            <div class="products-meta mt-4">
+              <div class="product-category d-flex align-items-center">
+                <span class="font-weight-bold text-capitalize product-meta-title">Category :</span>
+                <a href="#">{{category}}</a>
+              </div>
+  
+              <!-- <div class="product-share mt-5">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a href="#"><i class="tf-ion-social-facebook"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><i class="tf-ion-social-twitter"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><i class="tf-ion-social-linkedin"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><i class="tf-ion-social-pinterest"></i></a>
+                  </li>
+                </ul>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="row">
+        <div class="col-lg-12">
+          <nav class="product-info-tabs wc-tabs mt-5 mb-5">
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+              <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Additional Information</a> -->
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Reviews</a>
+            </div>
+          </nav>
+  
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p>{{ product.description }}</p>
+            </div>
+
+            <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            
+            <ul class="list-unstyled info-desc">
+              <li class="d-flex">
+                <strong>Weight </strong>  
+                <span>400 g</span>
+              </li>
+              <li class="d-flex">
+                <strong>Dimensions </strong>
+                <span>10 x 10 x 15 cm</span>
+              </li>
+              <li class="d-flex">
+                <strong>Materials</strong>
+                <span >60% cotton, 40% polyester</span>
+              </li>
+              <li class="d-flex">
+                <strong>Color </strong>
+                <span>Blue, Gray, Green, Red, Yellow</span>
+              </li>
+              <li class="d-flex">
+                <strong>Size</strong>
+                <span>L, M, S, XL, XXL</span>
+              </li>
+            </ul>
+            </div> -->
+
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="media review-block mb-4">
+                  <img src="assets/images/avater-1.jpg" alt="reviewimg" class="img-fluid mr-4">
+                  <div class="media-body">
+                    <div class="product-review">
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                    </div>
+                    <h6>Therichpost <span class="text-sm text-muted font-weight-normal ml-3">-June 23, 2019</span></h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum suscipit consequuntur in, perspiciatis laudantium ipsa fugit. Iure esse saepe error dolore quod.</p>
+                  </div>  
+                </div>
+  
+                <div class="media review-block">
+                  <img src="assets/images/avater-2.jpg" alt="reviewimg" class="img-fluid mr-4">
+                  <div class="media-body">
+                    <div class="product-review">
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star"></i></span>
+                      <span><i class="tf-ion-android-star-outline"></i></span>
+                    </div>
+                    <h6>Therichpost <span class="text-sm text-muted font-weight-normal ml-3">-June 23, 2019</span></h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum suscipit consequuntur in, perspiciatis laudantium ipsa fugit. Iure esse saepe error dolore quod.</p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  

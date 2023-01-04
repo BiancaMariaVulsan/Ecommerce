@@ -5,7 +5,7 @@
           <div class="login-form border p-5">
             <div class="text-center heading">
               <h2 class="mb-2">Login</h2>
-              <p class="lead">Don’t have an account? <a href="#">Create a free account</a></p>
+              <p class="lead">Don’t have an account? <a href="/signup">Create a free account</a></p>
             </div>
   
             <form action="#">
@@ -15,7 +15,7 @@
               </div>
               <div class="form-group">
                 <label for="#">Enter Password</label>
-                <a class="float-right" href="">Forget password?</a>
+                <!-- <a class="float-right" href="">Forget password?</a> -->
                 <input [(ngModel)]="loginUser.password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="Enter Password" required> 
               </div>
   

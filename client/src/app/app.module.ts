@@ -26,7 +26,14 @@ import { CategoryService } from './services/categories.service';
 import { PaymentComponent } from './payment/payment.component';
 import { AccountService } from './services/account.service';
 import { JwtModule } from "@auth0/angular-jwt";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutService } from './services/checkout.service';
+import { CartService } from './services/cart.service';
+import { PaymentStripeComponent } from './payment-stripe/payment-stripe.component';
+import { AdminComponent } from './admin/admin.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { AdminproductComponent } from './adminproduct/adminproduct.component';
+import { NewproductComponent } from './newproduct/newproduct.component';
 
 export function tokenGetter() {
   return localStorage.getItem("eshop-jwt");
@@ -50,14 +57,20 @@ export function tokenGetter() {
     ProfileDetailsComponent,
     AddressComponent,
     EditAddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaymentStripeComponent,
+    AdminComponent,
+    AdminproductComponent,
+    NewproductComponent
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AppRoutingModule,
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -66,7 +79,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [ProductService, ProductVariantService, CategoryService, AccountService],
+  providers: [ProductService, ProductVariantService, CategoryService, AccountService, CheckoutService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

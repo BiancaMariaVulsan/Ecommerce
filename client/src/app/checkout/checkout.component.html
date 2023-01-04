@@ -23,11 +23,11 @@
         <div class="container">
            <div class="row">
               <div class="col-lg-8 pr-5">
-                <div class="coupon-notice " data-toggle="modal" data-target="#coupon-modal">
+                <!-- <div class="coupon-notice " data-toggle="modal" data-target="#coupon-modal">
                      <div class="bg-light p-3">
                          Have a coupon? <a routerLink="/checkout" class="showcoupon" >Click here to enter your code</a>
                      </div>
-                 </div>
+                 </div> -->
   
                  <div class="billing-details mt-5">
                     <h4 class="mb-4">Billing Details</h4>
@@ -45,12 +45,12 @@
                                 <input type="text" class="form-control" id="last_name" placeholder="">
                              </div>
                           </div>
-                          <div class="col-lg-12">
+                          <!-- <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="company_name">Company Name(Optional)</label>
                                 <input type="text" class="form-control" id="company_name" placeholder="">
                              </div>
-                          </div>
+                          </div> -->
   
                           <div class="col-lg-12">
                               <div class="form-group mb-4">
@@ -93,7 +93,7 @@
                              </div>
                           </div>
   
-                          <div class="col-lg-12">
+                          <!-- <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="company_name">District </label>
                                  <select class="form-control">
@@ -112,7 +112,7 @@
                                    <option value="December">December</option>
                                 </select>
                              </div>
-                          </div>
+                          </div> -->
                           
                            <div class="col-lg-12">
                               <div class="form-group mb-4">
@@ -196,15 +196,22 @@
                           </div> -->
   
                           <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
                             <label class="form-check-label" for="exampleRadios2">
                                Pay on Delivery 
                             </label>
                           </div>
 
                           <div class="form-check mb-3">
-                           <button routerLink="/payment" class="btn btn-transparent">Pay Online</button>
+                           <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                           <label class="form-check-label" for="exampleRadios2">
+                              Pay Online
+                           </label>
                          </div>
+
+                          <!-- <div class="form-check mb-3">
+                           <button routerLink="/payment" class="btn btn-transparent">Pay Online</button>
+                         </div> -->
   
                            <div class="form-check mb-3">
                               <input type="checkbox" class="form-check-input" id="exampleCheck3">
@@ -215,7 +222,7 @@
                        <div class="info mt-4 border-top pt-4 mb-5">
                           Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#">privacy policy</a>.
                        </div>
-                       <a routerLink="/checkout" class="btn btn-main btn-small">Place Order</a>
+                       <a routerLink="/payment" class="btn btn-main btn-small">Place Order</a>
                  </div>
               </div>
            </div>

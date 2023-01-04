@@ -5,7 +5,7 @@
           <div class="login-form border p-5">
             <div class="text-center heading">
               <h2 class="mb-2">Sign Up</h2>
-              <p class="lead">Already have an account? <a routerLink="/login"> Login now</a></p>
+              <p class="lead">Already have an account? <a routerLink="/login"> Log in now</a></p>
             </div>
   
             <form action="#">
@@ -18,13 +18,14 @@
                 <input [(ngModel)]="signUpUser.roleId" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Role's GUID"> 
               </div>
               <div class="form-group mb-4">
-                <a class="float-right" href="">Forget password?</a>
+                <!-- <a class="float-right" href="">Forget password?</a> -->
                 <label for="#">Enter Password</label>
                 <input [(ngModel)]="signUpUser.password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="Enter Password"> 
+                <p> * Password must have 1 Uppercase, 1 Lowercase, 1 number and 1 non alpha-numeric and at least 6 characters</p>
               </div>
               <div class="form-group">
                 <label for="#">Confirm Password</label>
-                <input type="password" class="form-control" placeholder="Confirm Password"> 
+                <input [(ngModel)]="confirmationPassword"  [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="Confirm Password"> 
               </div>
   
               <button (click)="onSignupClicked()" class="btn btn-main mt-3 btn-block">Signup</button>
