@@ -64,3 +64,15 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, add_label):
         return True
+
+
+class Customer(models.Model):
+    customerId = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50, unique=True)
+    ordered_before = models.BooleanField(default=False)
+
+    def create_customer(cust_id, cust_name, cust_email):
+        customer = Customer(customerId=cust_id, name=cust_name, email=cust_email)
+        customer.save()
+

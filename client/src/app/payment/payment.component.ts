@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckoutService } from '../services/checkout.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,7 +10,7 @@ export class PaymentComponent implements OnInit {
 
   paymentHandler:any = null;
 
-  constructor() { }
+  constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.invokeStripe();
@@ -20,10 +21,20 @@ export class PaymentComponent implements OnInit {
       key: 'pk_test_51MKU1wDo0NxQ0glB5HRAxUsR9MsY24POw3YHwIXnoMyFRyJ3cAV6FaErUeuEiWkGuWgAOoB3ILWXTgHA1CE9LTFr00WOT5U5vJ',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log({stripeToken})
+        console.log(stripeToken);
         alert('Stripe token generated!');
+        paymentStripe(stripeToken);
       }
     });
+
+    const paymentStripe = (stripeTocken: any) => {
+      // this.checkoutService.createStripeCustomer(stripeTocken, localStorage.getItem("eshop-username"), 'name').subscribe((data:any) => {
+      //   console.log(data)
+      // })
+      this.checkoutService.makePayment(localStorage.getItem("eshop-username"), amount).subscribe((data:any) => {
+        console.log(data)
+      })
+    }
   
     paymentHandler.open({
       name: 'Card Details',

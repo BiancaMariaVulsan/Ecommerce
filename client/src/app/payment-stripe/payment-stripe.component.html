@@ -1,0 +1,49 @@
+<section class="page-header">
+    <div class="overly"></div>   
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="content text-center">
+            <h1 class="mb-3">Checkout</h1>
+            <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
+  
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent justify-content-center">
+              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ol>
+          </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="page-wrapper">
+<div class="checkout shopping">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col col-lg-6">
+                    <label for="#">Card Number</label>
+                    <input [(ngModel)]="cardNumber" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Card Number" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col col-2">
+                    <label for="#">CVV</label>
+                    <input [(ngModel)]="cvv" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="CVV" required> 
+                </div>
+                <div class="col-6">
+                    <br>
+                    <label for="#">Expiration date: </label>
+                    <input [(ngModel)]="expirationDate" [ngModelOptions]="{standalone: true}" class="inputCard" name="expiry" id="expiry" type="month" required/>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-main" (click)="payWithStripe()">Pay</button>
+        </form>
+    </div>
+</div>
+</div>

@@ -11,6 +11,7 @@ import { AccountService } from '../services/account.service';
 export class SignupComponent implements OnInit {
   signUpUser: SignupUserRequest;
   roles: UserRole[];
+  confirmationPassword: string = "";
 
   constructor(private accountService: AccountService, private router: Router) { }
 
@@ -18,11 +19,11 @@ export class SignupComponent implements OnInit {
     this.signUpUser = new SignupUserRequest();
     this.signUpUser.email = "";
     this.signUpUser.password = "";
-    // this.signUpUser.role = 0;
+    this.signUpUser.roleId = "";
   }
 
   onSignupClicked(): void {
-    this.accountService.signupUser(this.signUpUser).subscribe(res => {
+    this.accountService.signupUser(this.signUpUser, this.confirmationPassword).subscribe(res => {
       localStorage.setItem("eshop-username", res.email);
       localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);
@@ -31,8 +32,8 @@ export class SignupComponent implements OnInit {
 
       if (res.role.name == "Admin") {
         this.router.navigate(["dashboard"]);
-      } else {
-        this.router.navigate([""]);
+      } else if (res.role.name == "Customer") {
+        this.router.navigate(["shop"]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');

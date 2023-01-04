@@ -17,7 +17,10 @@ export class AccountService {
         return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/login/', loginUserInformation);
     }
 
-    signupUser(loginUserInformation: LoginUserRequest): Observable<LoginUserReply> {
-        return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/signup/', loginUserInformation);
+    signupUser(loginUserInformation: LoginUserRequest, confirmationpassword: string): Observable<LoginUserReply> {
+        if (confirmationpassword == loginUserInformation.password)
+            return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/signup/', loginUserInformation);
+        else
+            alert('Please make sure that you typed the password correctly!')
     }
 }

@@ -15,6 +15,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ShopComponent } from './shop/shop.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentStripeComponent } from './payment-stripe/payment-stripe.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
+  {path: 'payment-stripe', component: PaymentStripeComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
