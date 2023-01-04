@@ -37,6 +37,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
+  {path: 'payment-stripe', component: PaymentStripeComponent, canActivate: [AuthGuard]},
   {path: 'admin', component: AdminComponent}
 ];
 
