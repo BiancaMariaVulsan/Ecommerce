@@ -19,7 +19,11 @@ export class SignupComponent implements OnInit {
     this.signUpUser = new SignupUserRequest();
     this.signUpUser.email = "";
     this.signUpUser.password = "";
-    this.signUpUser.roleId = "";
+    this.signUpUser.roleId = "d27c5d21-0aed-4e83-a5d3-63082dfa0be3";
+    this.signUpUser.firstName = "";
+    this.signUpUser.lastName = "";
+    this.signUpUser.username = "";
+    this.accountService.getRoles().subscribe(r => this.roles = r)
   }
 
   onSignupClicked(): void {
@@ -38,6 +42,10 @@ export class SignupComponent implements OnInit {
     }, _ => {
       alert('Bad credentials, please try again.');
     });
+  }
+
+  setRole(event) {
+    this.signUpUser.roleId = event.target.value;
   }
 
 }

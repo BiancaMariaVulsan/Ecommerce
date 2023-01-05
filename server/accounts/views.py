@@ -14,8 +14,8 @@ class CustomerView(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
-    def getIdByEmail(email):
-        return Customer.objects.get(email=email)
+    # def getIdByEmail(email):
+    #     return Customer.objects.get(email=email)
 
 
 @api_view(['GET'])
@@ -58,3 +58,5 @@ def post_signup(request):
             "name": responsedict['role']['name']
         }
     })
+
+

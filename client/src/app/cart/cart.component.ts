@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBasketItem } from '../models/cart.model';
+import { Cart, CartItem, CartStore } from '../models/cart.model';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -8,21 +8,35 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  cartItems: CartItem[];
+  totaPrice: number;
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getCurrentCart().subscribe(c => {
+      console.log(c);
+      CartStore.cart = c;
+      this.cartItems = CartStore.cart.lineItems;
+      this.totaPrice = CartStore.cart.price;
+    });
   }
 
-  removeCartItem(item: IBasketItem): void {
-    this.cartService.removeItemFromCart(item);
+  removeCartItem(itemId: string): void {
+    this.cartService.removeItemFromCart(itemId).subscribe(c => {
+      console.log(c);
+      CartStore.cart = c;
+      this.cartItems = CartStore.cart.lineItems;
+      this.totaPrice = CartStore.cart.price;
+    });
   }
 
-  incrementItemQuantity(item: IBasketItem): void {
-    this.cartService.changeItemQuantity(item);
-  }
-
-  decrementItemQuantity(item: IBasketItem): void {
-    this.cartService.changeItemQuantity(item);
+  changeQuantity(event, item: CartItem): void {
+    item.quantity = event.target.value;
+    this.cartService.changeItemQuantity(item).subscribe(c => {
+      console.log(c);
+      CartStore.cart = c;
+      this.cartItems = CartStore.cart.lineItems;
+      this.totaPrice = CartStore.cart.price;
+    });
   }
 }

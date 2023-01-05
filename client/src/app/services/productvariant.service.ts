@@ -31,4 +31,9 @@ export class ProductVariantService {
         return this.http.post(this.APIUrl + 'store/variants/', newVariant)
         .subscribe();
     }
+
+    filterByColorAndSize(productId: number, color: string, size: string) {
+        debugger;
+        return this.variants.filter(v => v.parent_id == productId && v.size == size && v.color == color).map(v => v.id).at(0);
+    }
 }

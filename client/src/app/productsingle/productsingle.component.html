@@ -68,8 +68,8 @@
   
             <form class="cart" action="#" method="post">
               <div class="quantity d-flex align-items-center">
-                <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="9" name="quantity" value="1" title="Qty" size="4" >
-                <a href="#" class="btn btn-main btn-small">Add to cart</a>
+                <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="9" name="quantity" value="1" title="Qty" size="4" [(ngModel)]="quantity">
+                <a routerLink="/shop" class="btn btn-main btn-small" (click)="addProduct()">Add to cart</a>
               </div>
             </form>
   
@@ -88,14 +88,14 @@
   
             <div class="product-size d-flex align-items-center mt-4">
               <span class="font-weight-bold text-capitalize product-meta-title">Size:</span>
-                <select class="form-control">
+                <select class="form-control" (change)="setSize($event)">
                   <option *ngFor="let size of sizesAvailable"> {{size}} </option>
                 </select>
             </div>
   
             <div class="products-meta mt-4">
               <div class="product-category d-flex align-items-center">
-                <span class="font-weight-bold text-capitalize product-meta-title">Category :</span>
+                <span class="font-weight-bold text-capitalize product-meta-title">Category: </span>
                 <a href="#">{{category}}</a>
               </div>
   

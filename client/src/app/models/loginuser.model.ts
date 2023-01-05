@@ -1,7 +1,7 @@
 export class LoginUserRequest {
     constructor() { }
 
-    public email: string;
+    public userName: string;
     public password: string;
 }
 
@@ -9,8 +9,11 @@ export class SignupUserRequest {
     constructor() { }
 
     public email: string;
+    public username: string;
     public password: string;
     public roleId: string;
+    public firstName: string;
+    public lastName: string;
 }
 
 export class LoginUserReply {
