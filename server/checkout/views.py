@@ -67,3 +67,5 @@ def post_order(request):
     querydict = ast.literal_eval(querydictstr)
     Address.create_address(querydict['address']['country'], querydict['address']['city'], querydict['address']['street'], querydict['address']['number'], querydict['address']['postcode'])
     Order.create_order(querydict['userId'], 1, querydict['status'], querydict['total'])
+
+    
