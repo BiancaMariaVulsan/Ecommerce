@@ -19,6 +19,9 @@ export class SignupUserRequest {
 export class LoginUserReply {
     public id: string;
     public email: string;
+    public userName: string;
+    public firstName: string;
+    public lastName: string;
     public token: string;
     public role: UserRole = new UserRole();
 

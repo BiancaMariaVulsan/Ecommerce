@@ -26,7 +26,6 @@ export class CartComponent implements OnInit {
       console.log(c);
       CartStore.cart = c;
       this.cartItems = CartStore.cart.lineItems;
-      this.totaPrice = CartStore.cart.price;
     });
   }
 
@@ -36,7 +35,6 @@ export class CartComponent implements OnInit {
       console.log(c);
       CartStore.cart = c;
       this.cartItems = CartStore.cart.lineItems;
-      this.totaPrice = CartStore.cart.price;
     });
   }
 }

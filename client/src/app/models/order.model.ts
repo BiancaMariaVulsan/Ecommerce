@@ -1,29 +1,19 @@
-import { IAddress } from "./address.model";
+import { Address } from "./address.model";
+import { CartItem } from "./cart.model";
 
-
-export interface IOrderToCreate {
-    basketId: string;
-    deliveryMethodId: number;
-    shipToAddress: IAddress;
-}
-
-export interface IOrder {
-    id: number;
-    buyerEmail: string;
-    orderDate: string;
-    shipToAddress: IAddress;
-    deliveryMethod: string;
-    shippingPrice: number;
-    orderItems: IOrderItem[];
-    subtotal: number;
+export class OrderRequest {
+    userId: string;
+    address: Address;
+    products: CartItem[];
     total: number;
     status: string;
   }
 
-export interface IOrderItem {
-    productId: number;
-    productName: string;
-    pictureUrl: string;
-    price: number;
-    quantity: number;
-}
+  export class OrderResponse {
+    userId: string;
+    address: Address;
+    products: CartItem[];
+    total: number;
+    status: string;
+    orderDate: string;
+  }

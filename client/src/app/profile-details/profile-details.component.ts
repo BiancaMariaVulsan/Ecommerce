@@ -11,7 +11,10 @@ export class ProfileDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loggedUser.email = localStorage.getItem("eshop-username");
+    this.loggedUser.email = localStorage.getItem("eshop-email");
+    this.loggedUser.userName = localStorage.getItem("eshop-username");
+    this.loggedUser.firstName = localStorage.getItem("eshop-firstname");
+    this.loggedUser.lastName = localStorage.getItem("eshop-lastname");
   }
 
 }

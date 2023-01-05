@@ -36,13 +36,13 @@
                           <div class="col-lg-6">
                               <div class="form-group mb-4">
                                 <label for="first_name">First Name</label>
-                                <input type="text" class="form-control" id="first_name" placeholder="">
+                                <input type="text" class="form-control" id="first_name" placeholder="{{loggedUser.firstName}}" disabled>
                              </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group mb-4">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" class="form-control" id="last_name" placeholder="">
+                                <input type="text" class="form-control" id="last_name" placeholder="{{loggedUser.lastName}}" disabled>
                              </div>
                           </div>
                           <!-- <div class="col-lg-12">
@@ -55,20 +55,8 @@
                           <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="company_name">Country</label>
-                                 <select class="form-control">
-                                   <option value="">Select an Option</option>
-                                   <option value="January">January</option>
-                                   <option value="February">February</option>
-                                   <option value="March">March</option>
-                                   <option value="April">April</option>
-                                   <option value="May">May</option>
-                                   <option value="June">June</option>
-                                   <option value="July">July</option>
-                                   <option value="August">August</option>
-                                   <option value="September">September</option>
-                                   <option value="October">October</option>
-                                   <option value="November">November</option>
-                                   <option value="December">December</option>
+                                 <select class="form-control" (change)="setCountry($event)">
+                                   <option value="" *ngFor="let country of countriesAvailable">{{country}}</option>
                                 </select>
                              </div>
                           </div>
@@ -76,20 +64,20 @@
                           <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Street Address</label>
-                                <input type="text" class="form-control" id="street" placeholder="">
+                                <input [(ngModel)]="address.street" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="street" placeholder="">
                              </div>
                           </div>
                            <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Apartment, suite, unit etc. (optional) (optional)</label>
-                                <input type="text" class="form-control" id="apartment" placeholder="Apartment">
+                                <input [(ngModel)]="address.number" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="apartment" placeholder="">
                              </div>
                           </div>
   
                            <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Town / City </label>
-                                <input type="text" class="form-control" id="city" placeholder="Apartment">
+                                <input [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="city" placeholder="">
                              </div>
                           </div>
   
@@ -117,23 +105,23 @@
                            <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Postcode / ZIP (optional)</label>
-                                <input type="text" class="form-control" id="postcode" placeholder="">
+                                <input [(ngModel)]="address.postcode" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="postcode" placeholder="">
                              </div>
                           </div>
-                           <div class="col-lg-12">
+                           <!-- <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Phone </label>
                                 <input type="text" class="form-control" id="phone" placeholder="">
                              </div>
-                          </div>
+                          </div> -->
                           <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Email address </label>
-                                <input type="text" class="form-control" id="email" placeholder="">
+                                <input type="text" class="form-control" id="email" placeholder="{{loggedUser.email}}" disabled>
                              </div>
                           </div>
   
-                          <div class="col-lg-12">
+                          <!-- <div class="col-lg-12">
                            <div class="form-check mb-4">
                               <input type="checkbox" class="form-check-input" id="exampleCheck1">
                               <label class="form-check-label" for="exampleCheck1">Create an account?</label>
@@ -144,7 +132,7 @@
                                  <input type="checkbox" class="form-check-input" id="exampleCheck2">
                                  <label class="form-check-label" for="exampleCheck2">Ship to a different address?</label>
                                </div>
-                          </div>
+                          </div> -->
                           <div class="col-lg-12">
                               <div class="form-group mb-4">
                                 <label for="first_name">Order notes (optional)</label>
@@ -161,17 +149,17 @@
                  <div class="product-checkout-details mt-5 mt-lg-0">
                        <h4 class="mb-4 border-bottom pb-4">Order Summary</h4>
   
-                       <div class="media product-card">
-                           <p>Kirby Shirt</p>
+                       <div class="media product-card" *ngFor="let item of cart.lineItems">
+                           <p>{{item.name}}</p>
                           <div class="media-body text-right">
-                             <p class="h5">1 x $249</p>
+                             <p class="h5">{{item.quantity}} x ${{item.price}}</p>
                           </div>
                        </div>
   
                        <ul class="summary-prices list-unstyled mb-4">
                           <li class="d-flex justify-content-between">
                              <span >Subtotal:</span>
-                             <span class="h5">$190</span>
+                             <span class="h5">${{cart.price}}</span>
                           </li>
                           <li class="d-flex justify-content-between">
                              <span >Shipping:</span>
@@ -179,7 +167,7 @@
                           </li>
                           <li class="d-flex justify-content-between">
                              <span>Total</span>
-                             <span class="h5">$250</span>
+                             <span class="h5">${{cart.price}}</span>
                           </li>
                        </ul>
   
@@ -196,14 +184,14 @@
                           </div> -->
   
                           <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                            <label class="form-check-label" for="exampleRadios2">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (change)="payOnDelivery()">
+                            <label class="form-check-label" for="exampleRadios1">
                                Pay on Delivery 
                             </label>
                           </div>
 
                           <div class="form-check mb-3">
-                           <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                           <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked (change)="payOnline()">
                            <label class="form-check-label" for="exampleRadios2">
                               Pay Online
                            </label>
@@ -214,7 +202,7 @@
                          </div> -->
   
                            <div class="form-check mb-3">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck3" [(ngModel)]="policy" [ngModelOptions]="{standalone: true}">
                               <label class="form-check-label" for="exampleCheck3">I have read and agree to the website terms and conditions *</label>
                             </div>
                        </form>
@@ -222,7 +210,10 @@
                        <div class="info mt-4 border-top pt-4 mb-5">
                           Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#">privacy policy</a>.
                        </div>
-                       <a routerLink="/payment-stripe" class="btn btn-main btn-small">Place Order</a>
+                       <button routerLink="/payment-stripe" class="btn btn-main btn-small" *ngIf="policy && paymentMethod==false">Pay {{cart.price}}</button>
+                       <button routerLink="/payment-stripe" class="btn btn-main btn-small" *ngIf="!policy&& paymentMethod==false" disabled>Pay {{cart.price}}</button>                       
+                       <button routerLink="/shop" class="btn btn-main btn-small" *ngIf="policy && paymentMethod==true" (click)="placeOrder()">Place Order</button>
+                       <button routerLink="/shop" class="btn btn-main btn-small" *ngIf="!policy&& paymentMethod==true" disabled>Place Order</button>
                  </div>
               </div>
            </div>

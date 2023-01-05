@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../models/payment.model';
+import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
 
 @Component({
@@ -11,10 +12,14 @@ export class PaymentStripeComponent implements OnInit {
   cardNumber: string;
   cvv: string;
   expirationDate;
+  amount: number;
 
-  constructor(private checkoutService: CheckoutService) {}
+  constructor(private checkoutService: CheckoutService, private cartService: CartService) {}
 
   ngOnInit(): void {
+    this.cartService.getCurrentCart().subscribe(c => {
+      this.amount = c.price;
+    });
   }
 
   validateData() {
@@ -27,13 +32,13 @@ export class PaymentStripeComponent implements OnInit {
     var customers: Customer[];
     this.checkoutService.getAllCustomers().subscribe(c => {
       customers = c;
-      if (!this.checkoutService.findCustomerByEmail(localStorage.getItem("eshop-username"), customers)) {
-        this.checkoutService.createStripeCustomer(localStorage.getItem("eshop-username"), 'Bia', this.cardNumber, year, month, this.cvv).subscribe(data => {
+      if (!this.checkoutService.findCustomerByEmail(localStorage.getItem("eshop-email"), customers)) {
+        this.checkoutService.createStripeCustomer(localStorage.getItem("eshop-email"), localStorage.getItem("eshop-username"), this.cardNumber, year, month, this.cvv).subscribe(data => {
           console.log(data);
-          this.checkoutService.makePayment(localStorage.getItem("eshop-username"), 10000).subscribe(data => console.log(data));
+          this.checkoutService.makePayment(localStorage.getItem("eshop-email"), this.amount).subscribe(data => console.log(data));
         });
       } else {
-        this.checkoutService.makePayment(localStorage.getItem("eshop-username"), 10000).subscribe(data => console.log(data));
+        this.checkoutService.makePayment(localStorage.getItem("eshop-email"), this.amount).subscribe(data => console.log(data));
       }
     });
   }

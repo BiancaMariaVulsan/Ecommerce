@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from accounts.models import Customer
 from accounts.views import CustomerView
+from checkout.models import Address, Order
 
 
 @api_view(['POST'])
@@ -57,42 +58,12 @@ def register_customer(request):
     return Response("Success")
 
 
-# @api_view(['POST'])
-# def add_item(request):
-#     querydictstr = request.body.decode('UTF-8')
-#     querydict = ast.literal_eval(querydictstr)
-#     cust_id = CustomerView.getIdByEmail(email=querydict['email']).customerId
-#     requests.post('http://localhost:5300/api/Cart/' + cust_id + '/addItem', json=querydict)
-#     return Response("Success")
-#
-#
-# @api_view(['POST'])
-# def remove_item(request):
-#     querydictstr = request.body.decode('UTF-8')
-#     querydict = ast.literal_eval(querydictstr)
-#     cust_id = CustomerView.getIdByEmail(email=querydict['email']).customerId
-#     requests.post('http://localhost:5300/api/Cart/' + cust_id + '/removeItem/' + querydict['id'], json=querydict)
-#     return Response("Success")
-#
-#
-# @api_view(['PUT'])
-# def change_item(request):
-#     querydictstr = request.body.decode('UTF-8')
-#     querydict = ast.literal_eval(querydictstr)
-#     requests.post('http://localhost:5300/api/Cart/' + querydict['email'] + '/change', json=querydict)
-#     return Response("Success")
-#
-#
-# @api_view(['GET'])
-# def get_cart(request):
-#     querydictstr = request.body.decode('UTF-8')
-#     querydict = ast.literal_eval(querydictstr)
-#     response = requests.get('http://localhost:5300/api/Cart/' + querydict['email'])
-#     responsedict = ast.literal_eval(response.content.decode("utf-8"))
-#     return Response({
-#         {
-#             "userId": responsedict['userId'],
-#             "lineItems": responsedict['lineItems'],
-#             "price": responsedict['price']
-#         }
-#     })
+def getAddressId():
+    pass
+
+@api_view(['POST'])
+def post_order(request):
+    querydictstr = request.body.decode('UTF-8')
+    querydict = ast.literal_eval(querydictstr)
+    Address.create_address(querydict['address']['country'], querydict['address']['city'], querydict['address']['street'], querydict['address']['number'], querydict['address']['postcode'])
+    Order.create_order(querydict['userId'], 1, querydict['status'], querydict['total'])

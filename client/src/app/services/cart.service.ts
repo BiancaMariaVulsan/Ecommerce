@@ -26,7 +26,7 @@ export class CartService {
       return this.http.get<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid"));
     }
     
-    deleteCart(cart: any) {
-      throw new Error('Method not implemented.');
+    deleteCart() {
+      return this.http.put<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid") + '/checkout', {});
     }
 }
