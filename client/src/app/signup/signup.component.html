@@ -10,13 +10,25 @@
   
             <form action="#">
               <div class="form-group mb-4">
+                <label for="#">First Name</label>
+                <input [(ngModel)]="signUpUser.firstName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter First Name">
+              </div>
+              <div class="form-group mb-4">
+                <label for="#">Last Name</label>
+                <input [(ngModel)]="signUpUser.lastName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Last Name">
+              </div>
+              <div class="form-group mb-4">
+                <label for="#">Username</label>
+                <input [(ngModel)]="signUpUser.username" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Username">
+              </div>
+              <div class="form-group mb-4">
                 <label for="#">Enter Email Address</label>
                 <input [(ngModel)]="signUpUser.email" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Email Address">
               </div>
-              <div class="form-group mb-4">
+              <!-- <div class="form-group mb-4">
                 <label for="#">Enter Role</label>
                 <input [(ngModel)]="signUpUser.roleId" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter Role's GUID"> 
-              </div>
+              </div> -->
               <div class="form-group mb-4">
                 <!-- <a class="float-right" href="">Forget password?</a> -->
                 <label for="#">Enter Password</label>

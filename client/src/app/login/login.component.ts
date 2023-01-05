@@ -14,20 +14,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginUser = new LoginUserRequest();
-    this.loginUser.email = "";
+    this.loginUser.userName = "";
     this.loginUser.password = "";
   }
 
   onLoginClicked(): void {
     this.accountService.loginUser(this.loginUser).subscribe(res => {
-      localStorage.setItem("eshop-username", res.email);
+      localStorage.setItem("eshop-email", res.email);
+      localStorage.setItem("eshop-username", res.userName);
+      localStorage.setItem("eshop-firstname", res.firstName);
+      localStorage.setItem("eshop-lastname", res.lastName);
       localStorage.setItem("eshop-userid", res.id);
       localStorage.setItem("eshop-jwt", res.token);
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
       
       if (res.role.name == "Admin") {
-        this.router.navigate(["dashboard"]);
+        this.router.navigate(["admin"]);
       } else if (res.role.name == "Customer") {
         this.router.navigate(["shop"]);
       }

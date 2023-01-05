@@ -94,7 +94,7 @@ export class AdminproductComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       this.productVariantService.getProductVariants().subscribe(v => {
         this.productVariant = v.filter(x => x.parent_id == params['id'] && x.color == this.colorsAvailable[this.selectedIndex] && x.size == this.size).at(0);
-        if(this.productVariant==undefined) {
+        if(this.productVariant===undefined) {
           this.stock = 0;
           console.log(this.stock);
         } else {

@@ -1,30 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IBasketItem } from '../models/cart.model';
+import { Observable } from 'rxjs';
+import { Cart, CartItem } from '../models/cart.model';
 
 @Injectable ()
 export class CartService {
-    private readonly APIUrl = 'http://127.0.0.1:8000/';
+    private readonly APIUrl = 'http://127.0.0.1:5300/';
 
     constructor(private http: HttpClient) {}
 
-    changeItemQuantity(item: IBasketItem) {
-      return this.http.put<any>(this.APIUrl + 'checkout/change/', item);
+    changeItemQuantity(item: CartItem) {
+      return this.http.put<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid") + '/change', item);
     }
 
-    removeItemFromCart(item: IBasketItem) {
-      return this.http.post<any>(this.APIUrl + 'checkout/remove/', item);
+    removeItemFromCart(itemId: string) {
+      return this.http.post<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid") + '/removeItem/' + itemId, itemId);
     }
 
-    addItemToCart(item: IBasketItem) {
-      return this.http.post<any>(this.APIUrl + 'checkout/add/', item);
+    addItemToCart(id: number, name: string, quantity: number, price: number) {
+      debugger;
+      return this.http.post<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid") + '/addItem', {id: id.toString(), name: name, quantity: quantity, price: price});
     }
 
-    getCurrentCart() {
-      return this.http.get(this.APIUrl + 'checkout/cart/');
+    getCurrentCart(): Observable<Cart> {
+      return this.http.get<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid"));
     }
     
-    deleteCart(basket: any) {
-      throw new Error('Method not implemented.');
+    deleteCart() {
+      return this.http.put<Cart>(this.APIUrl + 'api/Cart/' + localStorage.getItem("eshop-userid") + '/checkout', {});
     }
 }

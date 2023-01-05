@@ -22,23 +22,23 @@ import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'product-single/:id', component: ProductsingleComponent},
-  {path: 'admin-product/:id', component: AdminproductComponent},
+  {path: 'product-single/:id', component: ProductsingleComponent, canActivate: [AuthGuard], data: { roles: 'Admin' }},
+  {path: 'admin-product/:id', component: AdminproductComponent, canActivate: [AuthGuard], data: { roles: 'Admin' }},
   {path: 'new-product', component: NewproductComponent},
   {path: 'shop', component: ShopComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: 'Admin' }},
-  {path: 'order', component: OrdersComponent},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   {path: 'address', component: AddressComponent},
-  {path: 'edit-address', component: EditAddressComponent}, 
-  {path: 'profile-details', component: ProfileDetailsComponent},
+  // {path: 'edit-address', component: EditAddressComponent}, 
+  {path: 'profile-details', component: ProfileDetailsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
   {path: 'payment-stripe', component: PaymentStripeComponent, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: 'Admin' }}
 ];
 
 @NgModule({

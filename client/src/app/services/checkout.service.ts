@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IOrderToCreate } from '../models/order.model';
+import { Address } from '../models/address.model';
+import { OrderRequest, OrderResponse } from '../models/order.model';
 import { Customer, PaymentModel } from '../models/payment.model';
 
 @Injectable ()
@@ -34,8 +35,15 @@ export class CheckoutService {
       return this.http.post<any>(this.APIUrl + 'checkout/payment/', payment);
     }
 
-    createOrder(orderToCreate: IOrderToCreate): any {
-      // make a post call to orders table
-      throw new Error('Method not implemented.');
+    createOrder(orderToCreate: OrderRequest): Observable<any> {
+      return this.http.post<any>(this.APIUrl + 'checkout/order/', orderToCreate);
+    }
+
+    getOrders(): Observable<OrderResponse> {
+      return this.http.get<OrderResponse>(this.APIUrl + 'checkout/allorders/');
+    }
+
+    getAddress(): Observable<Address[]> {
+      return this.http.get<Address[]>(this.APIUrl + 'checkout/address/');
     }
 }

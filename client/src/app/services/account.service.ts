@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginUserReply, LoginUserRequest, UserRole } from '../models/loginuser.model';
+import { LoginUserReply, LoginUserRequest, SignupUserRequest, UserRole } from '../models/loginuser.model';
 
 @Injectable ()
 export class AccountService {
@@ -17,7 +17,7 @@ export class AccountService {
         return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/login/', loginUserInformation);
     }
 
-    signupUser(loginUserInformation: LoginUserRequest, confirmationpassword: string): Observable<LoginUserReply> {
+    signupUser(loginUserInformation: SignupUserRequest, confirmationpassword: string): Observable<LoginUserReply> {
         if (confirmationpassword == loginUserInformation.password)
             return this.http.post<LoginUserReply>(this.APIUrl + 'accounts/signup/', loginUserInformation);
         else

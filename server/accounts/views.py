@@ -34,6 +34,9 @@ def post_login(request):
     return Response({
         "id": responsedict['id'],
         "email": responsedict['email'],
+        "userName": responsedict['userName'],
+        "firstName": responsedict['firstName'],
+        "lastName": responsedict['lastName'],
         "token": responsedict['token'],
         "role": {
             "id": responsedict['role']['id'],
@@ -52,6 +55,9 @@ def post_signup(request):
     return Response({
         "id": responsedict['id'],
         "email": responsedict['email'],
+        "userName": responsedict['userName'],
+        "firstName": responsedict['firstName'],
+        "lastName": responsedict['lastName'],
         "token": responsedict['token'],
         "role": {
             "id": responsedict['role']['id'],

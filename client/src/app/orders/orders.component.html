@@ -30,17 +30,17 @@
           <div class="nav flex-column nav-pills">
             <a class="nav-link active" routerLink="/order" >Orders</a>
           </div>
-          <div class="nav flex-column nav-pills">
+          <!-- <div class="nav flex-column nav-pills">
             <a class="nav-link" routerLink="/order" >Downloads</a>
+          </div> -->
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/address" >Address</a>
           </div>
           <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/order" >Address</a>
+            <a class="nav-link" routerLink="/profile-details" >Account</a>
           </div>
           <div class="nav flex-column nav-pills">
-            <a class="nav-link" routerLink="/order" >Account</a>
-          </div>
-          <div class="nav flex-column nav-pills">
-            <a class="nav-link"routerLink="/order" >Log Out</a>
+            <a class="nav-link"routerLink="/" (click)="logout()">Log Out</a>
           </div>
         </div>
   
@@ -56,8 +56,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">#1012</th>
-                <td>June 11, 2019 </td>
-                <td>Completed</td>
-                <td>30</td> <td><a routerLink="/order" class="btn btn-dark btn-small">View</a></td> </tr> <tr> <th scope="row">#2214</th> <td>March 10, 2019</td> <td>Completed</td> <td>50</td> <td><a routerLink="/order" class="btn btn-dark btn-small">View</a></td> </tr> <tr> <th scope="row">#3434</th> <td>February 11, 2019</td> <td>Pending</td> <td>25</td> <td><a routerLink="/order" class="btn btn-dark btn-small">View</a></td> </tr> <tr> <th scope="row">#5312</th> <td>July 11, 2019</td> <td>Processsing</td> <td>56</td> <td><a routerLink="/order" class="btn btn-dark btn-small">View</a></td> </tr> </tbody> </table> </div> </div> </div> </section>
+              <tr *ngFor="let order of orders">
+                <th scope="row">#{{order.id}}</th>
+                <td>{{order.date}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.total}}</td> <td><a routerLink="/order" class="btn btn-dark btn-small">View</a>
+                </td> 
+              </tr> 
+            </tbody> 
+          </table> 
+        </div> 
+      </div> 
+    </div> 
+  </section>
