@@ -56,6 +56,7 @@ export class CheckoutComponent implements OnInit {
 
   setCountry(event) {
     this.address.country = event.target.value;
+    console.log(this.address.country);
   }
 
   placeOrder() {

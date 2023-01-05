@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Address } from '../models/address.model';
 import { OrderRequest, OrderResponse } from '../models/order.model';
 import { Customer, PaymentModel } from '../models/payment.model';
 
@@ -34,7 +35,15 @@ export class CheckoutService {
       return this.http.post<any>(this.APIUrl + 'checkout/payment/', payment);
     }
 
-    createOrder(orderToCreate: OrderRequest): Observable<OrderResponse> {
-      return this.http.post<OrderResponse>(this.APIUrl + 'checkout/order/', orderToCreate);
+    createOrder(orderToCreate: OrderRequest): Observable<any> {
+      return this.http.post<any>(this.APIUrl + 'checkout/order/', orderToCreate);
+    }
+
+    getOrders(): Observable<OrderResponse> {
+      return this.http.get<OrderResponse>(this.APIUrl + 'checkout/allorders/');
+    }
+
+    getAddress(): Observable<Address[]> {
+      return this.http.get<Address[]>(this.APIUrl + 'checkout/address/');
     }
 }

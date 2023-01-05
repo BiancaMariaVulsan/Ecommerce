@@ -64,5 +64,5 @@ export class ProductsingleComponent implements OnInit {
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
-  
+
 }

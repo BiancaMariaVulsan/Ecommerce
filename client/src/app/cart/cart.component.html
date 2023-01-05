@@ -42,11 +42,13 @@
                         <tbody *ngFor="let item of cartItems">
                           <tr class="cart_item">
                               <td class="product-thumbnail" data-title="Thumbnail">
-                                  <a routerLink="/product-single"><img src="assets/images/cart-1.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+                                  <a routerLink="/product-single">
+                                    <!-- <img [src]="item.imageFirstURL" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""> -->
+                                  </a>
                               </td>
   
                               <td class="product-name" data-title="Product">
-                                  <a href="#">{{item.name}}</a>
+                                  <a routerLink="/product-single/{{productId}}" (click)="getProductVariant(item.id)">{{item.name}}</a>
                               </td>
   
                               <td class="product-price" data-title="Price">
@@ -95,7 +97,7 @@
                   <ul class="list-unstyled mb-4">
                     <li class="d-flex justify-content-between pb-2 mb-3">
                       <h5>Subtotal</h5>
-                      <span>${{totaPrice}}</span>
+                      <span>${{totalPrice}}</span>
                     </li>
                      <li class="d-flex justify-content-between pb-2 mb-3">
                       <h5>Shipping</h5>
@@ -103,10 +105,11 @@
                     </li>
                      <li class="d-flex justify-content-between pb-2">
                       <h5>Total</h5>
-                      <span>${{totaPrice}}</span>
+                      <span>${{totalPrice}}</span>
                     </li>
                   </ul>
-                  <a routerLink="/checkout/" class="btn btn-main btn-small">Proceed to checkout</a>
+                  <button routerLink="/checkout" class="btn btn-main btn-small" *ngIf="!emptyCart">Proceed to checkout</button>
+                  <button class="btn btn-main btn-small" *ngIf="emptyCart" disabled>Proceed to checkout</button>
               </div>
             </div>
           </div>

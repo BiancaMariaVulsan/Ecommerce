@@ -42,7 +42,8 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-main" (click)="payWithStripe()">Pay</button>
+            <button routerLink="/" class="btn btn-main" (click)="payWithStripe()" *ngIf="successfullPayment">Pay</button>
+            <button routerLink="payment-stripe" class="btn btn-main" (click)="payWithStripe()" *ngIf="!successfullPayment">Pay</button>
         </form>
     </div>
 </div>

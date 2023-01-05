@@ -17,4 +17,8 @@ export class ProfileDetailsComponent implements OnInit {
     this.loggedUser.lastName = localStorage.getItem("eshop-lastname");
   }
 
+  logout() {
+    localStorage.clear();
+  }
+
 }

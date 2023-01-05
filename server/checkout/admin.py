@@ -4,11 +4,11 @@ from checkout.models import Address, Order, CustomerProduct
 
 
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ('id', 'city', 'country')
+    list_display = ('city', 'country')
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'customerId', 'addressId', 'total', 'date')
+    list_display = ('id', 'customerId', 'total', 'date')
 
 
 class CustomerProductAdmin(admin.ModelAdmin):

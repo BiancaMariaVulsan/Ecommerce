@@ -1,12 +1,14 @@
 import ast
 
 import requests
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from accounts.models import Customer
 from accounts.views import CustomerView
 from checkout.models import Address, Order
+from checkout.serializers import OrderSerializer, AddressSerializer
 
 
 @api_view(['POST'])
@@ -58,14 +60,22 @@ def register_customer(request):
     return Response("Success")
 
 
-def getAddressId():
-    pass
-
 @api_view(['POST'])
 def post_order(request):
     querydictstr = request.body.decode('UTF-8')
     querydict = ast.literal_eval(querydictstr)
-    Address.create_address(querydict['address']['country'], querydict['address']['city'], querydict['address']['street'], querydict['address']['number'], querydict['address']['postcode'])
-    Order.create_order(querydict['userId'], 1, querydict['status'], querydict['total'])
+    address = Address.create_address(querydict['userId'], querydict['address']['country'], querydict['address']['city'],
+                                     querydict['address']['street'], querydict['address']['number'],
+                                     querydict['address']['postcode'])
+    Order.create_order(address, querydict['status'], querydict['total'])
+    return Response("Success")
 
-    
+
+class OrderView(viewsets.ModelViewSet):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
+
+class AddressView(viewsets.ModelViewSet):
+    serializer_class = AddressSerializer
+    queryset = Address.objects.all()

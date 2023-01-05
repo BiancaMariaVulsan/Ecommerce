@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart, CartItem, CartStore } from '../models/cart.model';
 import { CartService } from '../services/cart.service';
+import { ProductService } from '../services/products.service';
+import { ProductVariantService } from '../services/productvariant.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,15 +11,23 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[];
-  totaPrice: number;
-  constructor(private cartService: CartService) { }
+  totalPrice: number;
+  emptyCart: boolean = true;
+  productId;
+
+  constructor(private cartService: CartService, private variantService: ProductVariantService) { }
 
   ngOnInit(): void {
     this.cartService.getCurrentCart().subscribe(c => {
       console.log(c);
       CartStore.cart = c;
       this.cartItems = CartStore.cart.lineItems;
-      this.totaPrice = CartStore.cart.price;
+      if(this.cartItems.length > 0) {
+        this.emptyCart = false;
+      } else {
+        this.emptyCart = true;
+      }
+      this.totalPrice = CartStore.cart.price;
     });
   }
 
@@ -26,6 +36,12 @@ export class CartComponent implements OnInit {
       console.log(c);
       CartStore.cart = c;
       this.cartItems = CartStore.cart.lineItems;
+      if(this.cartItems.length > 0) {
+        this.emptyCart = false;
+      } else {
+        this.emptyCart = true;
+      }
+      this.totalPrice = CartStore.cart.price;
     });
   }
 
@@ -35,6 +51,16 @@ export class CartComponent implements OnInit {
       console.log(c);
       CartStore.cart = c;
       this.cartItems = CartStore.cart.lineItems;
+      if(this.cartItems.length > 0) {
+        this.emptyCart = false;
+      } else {
+        this.emptyCart = true;
+      }
+      this.totalPrice = CartStore.cart.price;
     });
+  }
+
+  getProductVariant(id) {
+    this.variantService.getVariantById(id).subscribe(v => this.productId = v.parent_id)
   }
 }
