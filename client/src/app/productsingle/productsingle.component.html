@@ -247,11 +247,11 @@
             <span class="onsale" *ngIf="product.isOnSale">Sale</span>
             <div class="product-hover-overlay">
               <a href="#"><i class="tf-ion-android-cart"></i></a>
-              <a href="#"><i class="tf-ion-ios-heart"></i></a>
+              <a (click)="updateProductLikes(product)"><i class="tf-ion-ios-heart"></i></a>
                   </div>
   
             <div class="product-info">
-              <h2 class="product-title h5 mb-0"><a routerLink="/product-single">{{ product.name }}</a></h2>
+              <h2 class="product-title h5 mb-0"><a routerLink="/product-single/{{product.id}}">{{ product.name }}</a></h2>
               <span class="price">
                 ${{product.price}}
               </span>
