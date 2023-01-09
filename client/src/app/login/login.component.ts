@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("eshop-jwt", res.token);
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
-      
-      if (res.role.name == "Admin") {
-        this.router.navigate(["admin"]);
-      } else if (res.role.name == "Customer") {
-        this.router.navigate(["shop"]);
+      debugger;
+      if (res.role.name == "admin") {
+        this.router.navigate(["/admin"]);
+      } else if (res.role.name == "customer") {
+        this.router.navigate(["/shop"]);
       }
     }, _ => {
       alert('Bad credentials, please try again.');
