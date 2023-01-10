@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from '../models/payment.model';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
@@ -15,7 +16,7 @@ export class PaymentStripeComponent implements OnInit {
   amount: number;
   successfullPayment: boolean = true;
 
-  constructor(private checkoutService: CheckoutService, private cartService: CartService) {}
+  constructor(private checkoutService: CheckoutService, private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.cartService.getCurrentCart().subscribe(c => {
@@ -23,16 +24,25 @@ export class PaymentStripeComponent implements OnInit {
     });
   }
 
+  placeOrder() {
+    this.checkoutService.createOrder(this.checkoutService.orderRequest).subscribe(data => {
+      console.log(data);
+      this.cartService.deleteCart().subscribe(c => console.log(c))
+    });
+  }
+
   validateData() {
-    var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-    var carcvv = "^[0-9]{3, 4}$";
-    if(this.cardNumber.match(cardno) && this.cvv.match(carcvv))
+    // var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+    // var carcvv = /^[0-9]{3, 4}$/;
+    // if(this.cardNumber.match(cardno) && this.cvv.match(carcvv))
+    if(this.cardNumber.length == 16 && this.cvv.length == 3)
     {
       return true;
     }
     else
     {
       alert("Not a valid credit card number or cvv!");
+      this.router.navigate(['/payment-stripe']);
       return false;
     }
   }
@@ -41,13 +51,16 @@ export class PaymentStripeComponent implements OnInit {
     if(this.validateData()) {
       if(this.cardNumber === "4000000000009995") {
         this.successfullPayment = false;
-        alert("Insufficient Founds!")
+        alert("Insufficient Founds!");
+        this.router.navigate(['/payment-stripe']);
       } else if(this.cardNumber === "4000000000009987") {
         this.successfullPayment = false;
-        alert("This card has been lost!")
+        alert("This card has been lost!");
+        this.router.navigate(['/payment-stripe']);
       } else if(this.cardNumber === "4000000000000002") {
         this.successfullPayment = false;
-        alert("Declined Card!")
+        alert("Declined Card!");
+        this.router.navigate(['/payment-stripe']);
       } else {
         this.successfullPayment = true;
         var year = this.expirationDate.substring(0,4);
@@ -64,6 +77,7 @@ export class PaymentStripeComponent implements OnInit {
             this.checkoutService.makePayment(localStorage.getItem("eshop-email"), this.amount*100).subscribe(data => console.log(data));
           }
           alert("Thanks for your order!");
+          this.placeOrder();
         });
       }
     }

@@ -9,6 +9,7 @@ import { Customer, PaymentModel } from '../models/payment.model';
 export class CheckoutService {
     private readonly APIUrl = 'http://127.0.0.1:8000/';
     private customers: Customer[];
+    orderRequest: OrderRequest;
 
     constructor(private http: HttpClient) {this.http.get<Customer[]>(this.APIUrl + 'accounts/customers/').subscribe(c => this.customers = c);}
 
@@ -41,6 +42,10 @@ export class CheckoutService {
 
     getOrders(): Observable<OrderResponse> {
       return this.http.get<OrderResponse>(this.APIUrl + 'checkout/allorders/');
+    }
+
+    getOrdersByCustomer(id: string): Observable<OrderResponse> {
+      return this.http.get<OrderResponse>(this.APIUrl + 'checkout/allorders/' + id + '/');
     }
 
     getAddress(): Observable<Address[]> {

@@ -13,7 +13,11 @@ export class OrdersComponent implements OnInit {
   constructor(private checkoutService: CheckoutService) { }
 
   ngOnInit(): void {
-    this.checkoutService.getOrders().subscribe(o => {
+    // this.checkoutService.getOrders().subscribe(o => {
+    //   this.orders = o;
+    //   console.log(o);
+    // })
+    this.checkoutService.getOrdersByCustomer(localStorage.getItem("eshop-userid")).subscribe(o => {
       this.orders = o;
       console.log(o);
     })

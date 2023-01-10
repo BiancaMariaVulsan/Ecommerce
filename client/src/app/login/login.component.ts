@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
       debugger;
-      if (res.role.name == "admin") {
-        this.router.navigate(["/admin"]);
-      } else if (res.role.name == "customer") {
+      if (res.role.name == "Admin") {
+        this.router.navigate(["/Admin"]);
+      } else if (res.role.name == "Customer") {
         this.router.navigate(["/shop"]);
       }
     }, _ => {

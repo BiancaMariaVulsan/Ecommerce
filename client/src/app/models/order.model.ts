@@ -2,7 +2,7 @@ import { Address } from "./address.model";
 import { CartItem } from "./cart.model";
 
 export class OrderRequest {
-    userId: string;
+    customerId: string;
     address: Address;
     products: CartItem[];
     total: number;

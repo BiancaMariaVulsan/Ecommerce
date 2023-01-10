@@ -31,9 +31,10 @@ export class CheckoutComponent implements OnInit {
       this.orderRequest.total = CartStore.cart.price;
     });
     this.countriesAvailable = ["Romania", "England", "Hungary"]
-    this.orderRequest.userId = localStorage.getItem("eshop-userid")
+    this.orderRequest.customerId = localStorage.getItem("eshop-userid")
     this.orderRequest.address = this.address;
     this.orderRequest.status = "Processing";
+    this.checkoutService.orderRequest = this.orderRequest;
 
     this.address.country = this.countriesAvailable.at(0);
     this.address.city = "Cluj Napoca";
@@ -62,7 +63,8 @@ export class CheckoutComponent implements OnInit {
   placeOrder() {
     this.checkoutService.createOrder(this.orderRequest).subscribe(data => {
       console.log(data);
-      this.cartService.deleteCart().subscribe(c => console.log(c))
+      this.cartService.deleteCart().subscribe(c => console.log(c));
+      alert("Thank you for your order!");
     });
   }
 }

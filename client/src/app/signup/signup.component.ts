@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
     this.signUpUser = new SignupUserRequest();
     this.signUpUser.email = "";
     this.signUpUser.password = "";
-    this.signUpUser.roleId = "eff6983a-d7c6-4c0c-8158-89ecd901e882";
+    this.signUpUser.roleId = "d27c5d21-0aed-4e83-a5d3-63082dfa0be3";
     this.signUpUser.firstName = "";
     this.signUpUser.lastName = "";
     this.signUpUser.username = "";
@@ -37,9 +37,9 @@ export class SignupComponent implements OnInit {
       localStorage.setItem("eshop-usertypeid", res.role.id);
       localStorage.setItem("eshop-usertype", res.role.name);
 
-      if (res.role.name == "admin") {
-        this.router.navigate(["admin"]);
-      } else if (res.role.name == "customer") {
+      if (res.role.name == "Admin") {
+        this.router.navigate(["Admin"]);
+      } else if (res.role.name == "Customer") {
         this.router.navigate(["shop"]);
       }
     }, _ => {
